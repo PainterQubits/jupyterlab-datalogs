@@ -7,13 +7,16 @@ _my_first_extension
 
 # Build
 dist/
+lib/
 labextension/
 
 # Python
 __pycache__/
 
+# Typescript
+*.tsbuildinfo
+
 # Yarn
 node_modules/
 .yarn/
 .pnp.*
-.yarnrc.yml

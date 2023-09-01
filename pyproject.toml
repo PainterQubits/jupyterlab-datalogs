@@ -1,14 +1,8 @@
 [project]
 name = "datalogger-jupyterlab"
-version = "0.1.0"
-description = "JupyterLab extension for DataLogger."
+license = { file = "LICENSE" }
 readme = "README.md"
 requires-python = ">=3.9"
-license = "BSD-3-Clause"
-keywords = ["jupyter", "jupyterlab", "jupyterlab-extension"]
-authors = [
-  { name = "Alex Hadley", email = "alexhad6@gmail.com" },
-]
 classifiers = [
   "Framework :: Jupyter",
   "Framework :: Jupyter :: JupyterLab",
@@ -23,19 +17,26 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
 ]
 dependencies = []
+dynamic = ["version", "description", "authors", "keywords", "urls"]
 
-[project.urls]
-Documentation = "https://github.com/PainterQubits/datalogger-jupyterlab-exploration#readme"
-Issues = "https://github.com/PainterQubits/datalogger-jupyterlab-exploration/issues"
-Source = "https://github.com/PainterQubits/datalogger-jupyterlab-exploration"
+[tool.hatch.version]
+source = "nodejs"
+
+[tool.hatch.metadata.hooks.nodejs]
+fields = ["description", "authors", "urls", "keywords"]
 
 [tool.hatch.build.targets.sdist]
 artifacts = ["/labextension"]
-exclude = ["package.json", "yarn.lock"]
+exclude = ["**/*"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/datalogger_jupyterlab"
 
+[tool.hatch.envs.default]
+dependencies = [
+  "jupyterlab>=4.0.0,<5"
+]
+
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-nodejs-version"]
 build-backend = "hatchling.build"
