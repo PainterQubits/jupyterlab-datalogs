@@ -1,5 +1,5 @@
 {
-  "name": "datalogger_jupyterlab",
+  "name": "datalogger-jupyterlab",
   "private": true,
   "version": "0.1.0",
   "description": "JupyterLab extension for DataLogger",
@@ -22,11 +22,12 @@
     "email": "alexhad6@gmail.com"
   },
   "type": "module",
+  "main": "lib/index.js",
   "jupyterlab": {
     "extension": true,
-    "outputDir": "labextension"
+    "outputDir": "labextension",
+    "schemaDir": "schema"
   },
-  "main": "lib/index.js",
   "scripts": {
     "dev": "yarn symlink:labextension && run-p watch:src watch:labextension jupyter:lab",
     "build": "rm -rf lib tsconfig.tsbuildinfo && tsc && hatch run jupyter labextension build .",
