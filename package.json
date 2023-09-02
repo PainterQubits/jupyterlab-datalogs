@@ -28,10 +28,13 @@
   },
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc -b --sourceMap && yarn build:labextension",
-    "build:prod": "tsc -b --clean && rm -rf lib && tsc -b && yarn build:labextension",
-    "build:labextension": "hatch run jupyter labextension build .",
-    "lint": "prettier --check ."
+    "dev": "yarn symlink:labextension && run-p watch:src watch:labextension jupyter:lab",
+    "build": "rm -rf lib tsconfig.tsbuildinfo && tsc && hatch run jupyter labextension build .",
+    "lint": "prettier --check .",
+    "symlink:labextension": "hatch run jupyter labextension develop --overwrite .",
+    "watch:src": "tsc -w --sourceMap",
+    "watch:labextension": "hatch run jupyter labextension watch .",
+    "jupyter:lab": "hatch run jupyter lab"
   },
   "dependencies": {
     "@jupyterlab/application": "^4.0.5",
@@ -40,6 +43,7 @@
   "packageManager": "yarn@3.6.3",
   "devDependencies": {
     "@jupyterlab/builder": "^4.0.5",
+    "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   }

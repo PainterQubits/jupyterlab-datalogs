@@ -31,6 +31,7 @@ exclude = ["**/*"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/datalogger_jupyterlab"
+"install.json" = "share/jupyter/labextensions/datalogger_jupyterlab/install.json"
 
 [tool.hatch.envs.default]
 dependencies = [
