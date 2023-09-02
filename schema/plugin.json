@@ -1,0 +1,20 @@
+{
+  "title": "Context Menu Example",
+  "description": "Context Menu Example settings.",
+  "jupyter.lab.menus": {
+    "context": [
+      {
+        "command": "datalogger-jupyterlab:open",
+        "selector": ".jp-DirListing-item[data-file-type=\"netcdf\"]",
+        "rank": 15
+      },
+      {
+        "command": "datalogger-jupyterlab:open",
+        "selector": ".jp-DirListing-item[data-file-type=\"json\"]",
+        "rank": 15
+      }
+    ]
+  },
+  "additionalProperties": false,
+  "type": "object"
+}
