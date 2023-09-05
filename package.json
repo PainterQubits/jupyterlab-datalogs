@@ -29,11 +29,11 @@
     "schemaDir": "schema"
   },
   "scripts": {
-    "dev": "yarn symlink:labextension && run-p watch:src watch:labextension jupyterlab",
+    "dev": "tsc --sourceMap && yarn dev:labextension && run-p watch:src watch:labextension jupyterlab",
     "build": "rm -rf lib tsconfig.tsbuildinfo && tsc && hatch run jupyter labextension build .",
     "preview": "yarn build && hatch env prune && yarn jupyterlab",
     "lint": "prettier --check .",
-    "symlink:labextension": "hatch run jupyter labextension develop --overwrite .",
+    "dev:labextension": "hatch run jupyter labextension develop --overwrite .",
     "watch:src": "tsc -w --sourceMap",
     "watch:labextension": "hatch run jupyter labextension watch .",
     "jupyterlab": "hatch run jupyter lab"
