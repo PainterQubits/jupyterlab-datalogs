@@ -3,15 +3,11 @@ import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
 import { showDialog, Dialog } from "@jupyterlab/apputils";
 import { spreadsheetIcon, codeIcon } from "@jupyterlab/ui-components";
 
-// TODO: These can be separate plugins within the same extension
-
-const plugin: JupyterFrontEndPlugin<void> = {
-  id: "datalogger-jupyterlab:plugin",
-  description: "JupyterLab plugin for DataLogger",
+const netcdfFileType: JupyterFrontEndPlugin<void> = {
+  id: "datalogger-jupyterlab:netcdf-file-type",
+  description: "Adds NetCDF file type.",
   autoStart: true,
-  requires: [IFileBrowserFactory],
-  activate: (app: JupyterFrontEnd, factory: IFileBrowserFactory) => {
-    // Add NetCDF file type
+  activate: (app: JupyterFrontEnd) => {
     const docRegistry = app.docRegistry;
     if (docRegistry.getFileType("netcdf") === undefined) {
       docRegistry.addFileType({
@@ -24,11 +20,18 @@ const plugin: JupyterFrontEndPlugin<void> = {
         icon: spreadsheetIcon,
       });
     }
+  },
+};
 
-    // Context menu command
+const copyDataLoggerLoadCode: JupyterFrontEndPlugin<void> = {
+  id: "datalogger-jupyterlab:copy-datalogger-load-code",
+  description: "Context menu item to copy code to load log files using DataLogger.",
+  autoStart: true,
+  requires: [IFileBrowserFactory],
+  activate: (app: JupyterFrontEnd, factory: IFileBrowserFactory) => {
     app.commands.addCommand("datalogger-jupyterlab:open", {
       label: "Copy DataLogger Load Code",
-      caption: "Example context menu button for file browser's items.",
+      caption: "Copy code to load this log file using DataLogger.",
       icon: codeIcon,
       execute: () => {
         const file = factory.tracker.currentWidget?.selectedItems().next().value;
@@ -45,4 +48,4 @@ const plugin: JupyterFrontEndPlugin<void> = {
   },
 };
 
-export default plugin;
+export default [netcdfFileType, copyDataLoggerLoadCode];

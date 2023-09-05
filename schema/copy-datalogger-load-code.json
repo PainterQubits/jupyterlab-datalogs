@@ -1,6 +1,6 @@
 {
-  "title": "Context Menu Example",
-  "description": "Context Menu Example settings.",
+  "title": "Copy DataLogger Load Code",
+  "description": "Context menu item to copy code to load log files using DataLogger.",
   "jupyter.lab.menus": {
     "context": [
       {
