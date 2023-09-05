@@ -8,13 +8,13 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/PainterQubits/datalogger-jupyterlab-exploration",
+  "homepage": "https://github.com/PainterQubits/datalogger-jupyterlab",
   "bugs": {
-    "url": "https://github.com/PainterQubits/datalogger-jupyterlab-exploration/issues"
+    "url": "https://github.com/PainterQubits/datalogger-jupyterlab/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/PainterQubits/datalogger-jupyterlab-exploration.git"
+    "url": "https://github.com/PainterQubits/datalogger-jupyterlab.git"
   },
   "license": "BSD-3-Clause",
   "author": {
