@@ -1,3 +1,3 @@
-# DataLogger JupyterLab Exploration
+# DataLogger JupyterLab
 
-Exploration of JupyterLab for DataLogger.
+JupyterLab extension for DataLogger.

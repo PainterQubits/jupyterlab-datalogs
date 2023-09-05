@@ -2,7 +2,7 @@
   "name": "datalogger-jupyterlab",
   "private": true,
   "version": "0.1.0",
-  "description": "JupyterLab extension for DataLogger",
+  "description": "JupyterLab extension for DataLogger.",
   "keywords": [
     "jupyter",
     "jupyterlab",
