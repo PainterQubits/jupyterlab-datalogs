@@ -35,8 +35,12 @@ exclude = ["**/*"]
 
 [tool.hatch.envs.default]
 dependencies = [
-  "jupyterlab>=4.0.0,<5"
+  "jupyterlab>=4.0.0,<5",
+  "datalogger"
 ]
+
+[tool.hatch.envs.default.env-vars]
+PIP_EXTRA_INDEX_URL = "https://painterqubits.github.io/datalogger/releases"
 
 [build-system]
 requires = ["hatchling", "hatch-nodejs-version"]

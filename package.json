@@ -21,17 +21,18 @@
     "name": "Alex Hadley",
     "email": "alexhad6@gmail.com"
   },
-  "type": "module",
   "main": "lib/index.js",
   "jupyterlab": {
     "extension": true,
     "outputDir": "labextension",
-    "schemaDir": "schema"
+    "schemaDir": "schema",
+    "webpackConfig": "./webpack.config.js"
   },
   "scripts": {
     "dev": "tsc --sourceMap && yarn dev:labextension && run-p watch:src watch:labextension jupyterlab",
-    "build": "rm -rf lib tsconfig.tsbuildinfo && tsc && hatch run jupyter labextension build .",
+    "build": "yarn clean && tsc && hatch run jupyter labextension build .",
     "preview": "yarn build && hatch env prune && yarn jupyterlab",
+    "clean": "rm -rf lib tsconfig.tsbuildinfo labextension",
     "lint": "prettier --check .",
     "dev:labextension": "hatch run jupyter labextension develop --overwrite .",
     "watch:src": "tsc -w --sourceMap",
@@ -40,8 +41,8 @@
   },
   "dependencies": {
     "@jupyterlab/application": "^4.0.5",
-    "@jupyterlab/apputils": "^4.1.5",
     "@jupyterlab/filebrowser": "^4.0.5",
+    "@jupyterlab/notebook": "^4.0.5",
     "@jupyterlab/ui-components": "^4.0.5"
   },
   "devDependencies": {
