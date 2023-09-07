@@ -1906,6 +1906,7 @@ __metadata:
   dependencies:
     "@jupyterlab/application": ^4.0.5
     "@jupyterlab/builder": ^4.0.5
+    "@jupyterlab/docmanager": ^4.0.5
     "@jupyterlab/filebrowser": ^4.0.5
     "@jupyterlab/notebook": ^4.0.5
     "@jupyterlab/ui-components": ^4.0.5

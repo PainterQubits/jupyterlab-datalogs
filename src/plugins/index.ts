@@ -1,2 +1,2 @@
 export { default as netcdfFileTypePlugin } from "./netcdfFileTypePlugin";
-export { default as loadWithDataLoggerPlugin } from "./loadWithDataLoggerPlugin";
+export { default as dataloggerLoadCodePlugin } from "./dataloggerLoadCodePlugin";

@@ -1,3 +1,3 @@
-import { netcdfFileTypePlugin, loadWithDataLoggerPlugin } from "@/plugins";
+import { netcdfFileTypePlugin, dataloggerLoadCodePlugin } from "@/plugins";
 
-export default [netcdfFileTypePlugin, loadWithDataLoggerPlugin];
+export default [netcdfFileTypePlugin, dataloggerLoadCodePlugin];
