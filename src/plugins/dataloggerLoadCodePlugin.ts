@@ -81,7 +81,7 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
         const kernelName = specs !== null ? Object.keys(specs.kernelspecs)[0] : undefined;
 
         // Create a new notebook using that kernel
-        await commands.execute("notebook:create-new", { path: ".", kernelName });
+        await commands.execute("notebook:create-new", { cwd: ".", kernelName });
 
         // Get the current notebook
         let { currentWidget: notebookPanel } = notebookTracker;
