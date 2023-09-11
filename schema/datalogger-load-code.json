@@ -4,19 +4,14 @@
   "jupyter.lab.menus": {
     "context": [
       {
-        "type": "separator",
-        "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
-        "rank": 3
-      },
-      {
         "command": "datalogger-jupyterlab:add-datalogger-load-code",
         "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
         "rank": 3
       },
       {
         "command": "datalogger-jupyterlab:new-datalogger-notebook",
-        "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
-        "rank": 3
+        "selector": ".jp-DirListing-content",
+        "rank": 53
       }
     ]
   },

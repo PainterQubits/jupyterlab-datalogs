@@ -1,9 +1,8 @@
 import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application";
 import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
-import { IDocumentManager } from "@jupyterlab/docmanager";
 import { NotebookActions, INotebookTracker } from "@jupyterlab/notebook";
 import { addIcon, notebookIcon } from "@jupyterlab/ui-components";
-import { generateLoadCode } from "@/utils";
+import { generateLoadCode, addToActiveCell } from "@/utils";
 
 const logMimetypes = new Set(["application/json", "application/x-netcdf"]);
 
@@ -16,11 +15,10 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
   id: "datalogger-jupyterlab:datalogger-load-code",
   description: "Context menu items to generate code that loads logs with DataLogger.",
   autoStart: true,
-  requires: [IFileBrowserFactory, IDocumentManager, INotebookTracker],
+  requires: [IFileBrowserFactory, INotebookTracker],
   activate: (
     { commands, serviceManager }: JupyterFrontEnd,
     { tracker: fileBrowserTracker }: IFileBrowserFactory,
-    documentManager: IDocumentManager,
     notebookTracker: INotebookTracker,
   ) => {
     commands.addCommand("datalogger-jupyterlab:add-datalogger-load-code", {
@@ -31,25 +29,19 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
       execute: async () => {
         const { currentWidget: fileBrowser } = fileBrowserTracker;
         if (fileBrowser === null) return;
+        const files = [...fileBrowser.selectedItems()];
 
         // Get the current notebook
         let { currentWidget: notebookPanel } = notebookTracker;
         if (notebookPanel === null) return;
-        const notebook = notebookPanel.content;
-
-        // Reveal the notebook
-        documentManager.openOrReveal(notebookPanel.context.path);
+        const {
+          content: notebook,
+          context: { path: notebookPath },
+        } = notebookPanel;
 
         // Create a new cell with the load code
         NotebookActions.insertBelow(notebook);
-        const { activeCell } = notebook;
-        if (activeCell !== null) {
-          await activeCell.ready;
-          const { editor } = activeCell;
-          if (editor?.replaceSelection !== undefined) {
-            editor.replaceSelection(generateLoadCode([...fileBrowser.selectedItems()]));
-          }
-        }
+        addToActiveCell(notebook, generateLoadCode(files, notebookPath));
       },
       isVisible: () => {
         const { currentWidget: fileBrowser } = fileBrowserTracker;
@@ -71,7 +63,9 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
       execute: async () => {
         const { currentWidget: fileBrowser } = fileBrowserTracker;
         if (fileBrowser === null) return null;
-        const files = [...fileBrowser.selectedItems()];
+        const files = [...fileBrowser.selectedItems()].filter(({ mimetype }) =>
+          logMimetypes.has(mimetype),
+        );
 
         // Get the name of the first kernel
         await serviceManager.ready;
@@ -81,46 +75,30 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
         const kernelName = specs !== null ? Object.keys(specs.kernelspecs)[0] : undefined;
 
         // Create a new notebook using that kernel
-        await commands.execute("notebook:create-new", { cwd: ".", kernelName });
+        await commands.execute("notebook:create-new", { kernelName });
 
         // Get the current notebook
         let { currentWidget: notebookPanel } = notebookTracker;
         if (notebookPanel === null) return;
-        const notebook = notebookPanel.content;
+        const {
+          content: notebook,
+          context: { path: notebookPath },
+        } = notebookPanel;
 
         // Reveal the notebook (for some reason, this step, and conducting this step as
         // a command rather than using IDocumentManager, appears to be necessary for
         // editing cells in the new notebook).
-        await commands.execute("docmanager:open", { path: notebookPanel.context.path });
+        await commands.execute("docmanager:open", { path: notebookPath });
 
-        // Add imports, load code, and a blank cell
-        if (notebook.activeCell !== null) {
-          const { activeCell } = notebook;
-          await activeCell.ready;
-          const { editor } = activeCell;
-          if (editor?.replaceSelection !== undefined) {
-            editor.replaceSelection("from datalogger import load_log");
-          }
+        // Add imports, load code (if any files are selected), and a blank cell
+        await notebook.activeCell?.ready;
+        addToActiveCell(notebook, "from datalogger import load_log");
+        if (files.length > 0) {
+          NotebookActions.insertBelow(notebook);
+          await notebook.activeCell?.ready;
+          addToActiveCell(notebook, generateLoadCode(files, notebookPath));
         }
         NotebookActions.insertBelow(notebook);
-        if (notebook.activeCell !== null) {
-          const { activeCell } = notebook;
-          await activeCell.ready;
-          const { editor } = activeCell;
-          if (editor?.replaceSelection !== undefined) {
-            editor.replaceSelection(generateLoadCode(files));
-          }
-        }
-        NotebookActions.insertBelow(notebook);
-      },
-      isVisible: () => {
-        const { currentWidget: fileBrowser } = fileBrowserTracker;
-        return (
-          fileBrowser !== null &&
-          [...fileBrowser.selectedItems()].every(({ mimetype }) =>
-            logMimetypes.has(mimetype),
-          )
-        );
       },
     });
   },
