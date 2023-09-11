@@ -2,6 +2,25 @@
   "title": "DataLogger Load Code",
   "description": "Context menu items to generate code that loads logs with DataLogger.",
   "jupyter.lab.menus": {
+    "main": [
+      {
+        "id": "jp-mainmenu-file",
+        "items": [
+          {
+            "type": "submenu",
+            "submenu": {
+              "id": "jp-mainmenu-file-new",
+              "items": [
+                {
+                  "command": "datalogger-jupyterlab:datalogger-notebook",
+                  "rank": 40
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ],
     "context": [
       {
         "command": "datalogger-jupyterlab:add-datalogger-load-code",
