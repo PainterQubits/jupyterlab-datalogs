@@ -13,7 +13,7 @@
               "items": [
                 {
                   "command": "datalogger-jupyterlab:datalogger-notebook",
-                  "rank": 40
+                  "rank": 20
                 }
               ]
             }

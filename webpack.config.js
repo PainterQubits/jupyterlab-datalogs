@@ -6,4 +6,12 @@ module.exports = {
       "@": path.resolve(__dirname, "lib"),
     },
   },
+  module: {
+    rules: [
+      {
+        resourceQuery: /url/,
+        type: "asset/inline",
+      },
+    ],
+  },
 };

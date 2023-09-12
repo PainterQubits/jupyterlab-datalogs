@@ -29,13 +29,15 @@
     "webpackConfig": "./webpack.config.js"
   },
   "scripts": {
-    "dev": "tsc --sourceMap && yarn dev:labextension && run-p watch:src watch:labextension jupyterlab",
-    "build": "yarn clean && tsc && hatch run jupyter labextension build .",
+    "dev": "run-s build:lib dev:labextension && run-p watch:src watch:labextension jupyterlab",
+    "build": "run-s clean build:lib && hatch run jupyter labextension build .",
     "preview": "yarn build && hatch env prune && yarn jupyterlab",
     "clean": "rm -rf lib tsconfig.tsbuildinfo labextension",
     "lint": "prettier --check .",
+    "cp:icons": "mkdir -p lib/icons && cp src/icons/*.svg* lib/icons",
+    "build:lib": "yarn cp:icons && tsc",
     "dev:labextension": "hatch run jupyter labextension develop --overwrite .",
-    "watch:src": "tsc -w --sourceMap",
+    "watch:src": "yarn cp:icons && tsc -w",
     "watch:labextension": "hatch run jupyter labextension watch .",
     "jupyterlab": "hatch run jupyter lab"
   },

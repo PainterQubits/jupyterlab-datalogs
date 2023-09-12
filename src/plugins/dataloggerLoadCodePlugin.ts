@@ -2,8 +2,9 @@ import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application"
 import { ILauncher } from "@jupyterlab/launcher";
 import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
 import { NotebookPanel, NotebookActions, INotebookTracker } from "@jupyterlab/notebook";
-import { addIcon, notebookIcon } from "@jupyterlab/ui-components";
+import { addIcon } from "@jupyterlab/ui-components";
 import { generateLoadCode, addToActiveCell } from "@/utils";
+import { chartLineIcon, chartLineIconUrl } from "@/icons";
 
 const logMimetypes = new Set(["application/json", "application/x-netcdf"]);
 
@@ -66,20 +67,26 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
 
     commands.addCommand("datalogger-jupyterlab:new-datalogger-notebook", {
       label: "New DataLogger Notebook",
-      icon: notebookIcon,
+      icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
     commands.addCommand("datalogger-jupyterlab:datalogger-notebook", {
       label: "DataLogger Notebook",
-      icon: notebookIcon,
-      caption: "Create a new notebook for use with DataLogger",
+      icon: chartLineIcon,
+      execute: newDataloggerNotebook,
+    });
+
+    commands.addCommand("datalogger-jupyterlab:datalogger", {
+      label: "DataLogger",
+      icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
     launcher.add({
       category: "Notebook",
-      command: "datalogger-jupyterlab:datalogger-notebook",
+      command: "datalogger-jupyterlab:datalogger",
+      kernelIconUrl: chartLineIconUrl,
     });
   },
 };
