@@ -1,6 +1,5 @@
 import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application";
 import { borderAllIcon } from "@/icons";
-// import { spreadsheetIcon } from "@jupyterlab/ui-components";
 
 /**
  * Plugin that makes JupyterLab recognize the NetCDF file type, allowing context menu
