@@ -3,10 +3,18 @@ import { ILauncher } from "@jupyterlab/launcher";
 import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
 import { NotebookPanel, NotebookActions, INotebookTracker } from "@jupyterlab/notebook";
 import { addIcon } from "@jupyterlab/ui-components";
-import { generateLoadCode, addToActiveCell } from "@/utils";
+import { generateLoadCode, addToNotebook } from "@/utils";
 import { chartLineIcon, chartLineIconUrl } from "@/icons";
 
 const logMimetypes = new Set(["application/json", "application/x-netcdf"]);
+
+const dataloggerNotebookImports = [
+  "import numpy as np",
+  "import pandas as pd",
+  "import xarray as xr",
+  "import matplotlib.pyplot as plt",
+  "from datalogger import load_log",
+];
 
 /**
  * Along with its corresponding schema (schema/datalogger-load-code.json), this plugin
@@ -38,9 +46,10 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
         await notebookPanel.context.ready;
         const { content: notebook } = notebookPanel;
 
-        // Create a new cell with the load code
-        NotebookActions.insertBelow(notebook);
-        await addToActiveCell(notebook, generateLoadCode(files, notebookPanel));
+        // Add a cell with load code for each file
+        for (const file of files) {
+          await addToNotebook(notebook, generateLoadCode(file, notebookPanel));
+        }
       },
       isVisible: () => {
         const { currentWidget: fileBrowser } = fileBrowserTracker;
@@ -60,12 +69,18 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
       await notebookPanel.context.ready;
       const { content: notebook } = notebookPanel;
 
-      // Add imports and a blank cell
-      await addToActiveCell(notebook, "from datalogger import load_log");
-      NotebookActions.insertBelow(notebook);
+      // Add imports and headers
+      await addToNotebook(notebook, "## Imports", {
+        insertLocation: "currentCell",
+        cellType: "markdown",
+      });
+      await addToNotebook(notebook, dataloggerNotebookImports.join("\n"));
+      await addToNotebook(notebook, "## Load Logs", { cellType: "markdown" });
+      await addToNotebook(notebook);
+      NotebookActions.renderAllMarkdown(notebook);
 
       // Set active cell to first cell
-      notebook.activeCellIndex = 0;
+      notebook.activeCellIndex = 2;
     }
 
     // Used in file browser context menu
