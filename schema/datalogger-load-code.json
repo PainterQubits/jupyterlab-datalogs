@@ -1,6 +1,6 @@
 {
   "title": "DataLogger Load Code",
-  "description": "Context menu items to generate code that loads logs with DataLogger.",
+  "description": "Shortcuts to generate code that loads logs with DataLogger.",
   "jupyter.lab.menus": {
     "main": [
       {

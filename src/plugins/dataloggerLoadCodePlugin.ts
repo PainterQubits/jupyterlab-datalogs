@@ -10,12 +10,12 @@ const logMimetypes = new Set(["application/json", "application/x-netcdf"]);
 
 /**
  * Along with its corresponding schema (schema/datalogger-load-code.json), this plugin
- * adds items to the context menu that generate code that loads log files using
- * DataLogger.
+ * adds items to the file browser context menu, the main menu, and the Launcher to
+ * add code to notebooks for loading log files using DataLogger.
  */
 const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
   id: "datalogger-jupyterlab:datalogger-load-code",
-  description: "Context menu items to generate code that loads logs with DataLogger.",
+  description: "Shortcuts to generate code that loads logs with DataLogger.",
   autoStart: true,
   requires: [ILauncher, IFileBrowserFactory, INotebookTracker],
   activate: (
@@ -63,20 +63,26 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
       // Add imports and a blank cell
       await addToActiveCell(notebook, "from datalogger import load_log");
       NotebookActions.insertBelow(notebook);
+
+      // Set active cell to first cell
+      notebook.activeCellIndex = 0;
     }
 
+    // Used in file browser context menu
     commands.addCommand("datalogger-jupyterlab:new-datalogger-notebook", {
       label: "New DataLogger Notebook",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
+    // Used in main menu File > New
     commands.addCommand("datalogger-jupyterlab:datalogger-notebook", {
       label: "DataLogger Notebook",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
+    // Used in Launcher
     commands.addCommand("datalogger-jupyterlab:datalogger", {
       label: "DataLogger",
       icon: chartLineIcon,
