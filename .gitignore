@@ -12,6 +12,7 @@ labextension/
 # Python
 __pycache__/
 .ipynb_checkpoints/
+.virtual_documents/
 
 # Typescript
 *.tsbuildinfo

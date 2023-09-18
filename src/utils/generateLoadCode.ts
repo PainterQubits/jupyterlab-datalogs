@@ -1,6 +1,7 @@
 import path from "path";
 import { NotebookPanel } from "@jupyterlab/notebook";
 import { FileInfo } from "@/types";
+import { jsonMimetype, netcdfMimetype } from "@/constants";
 
 const varSuffix = "_log";
 
@@ -8,7 +9,7 @@ export default function generateLoadCode(
   fileInfo: FileInfo,
   notebookPanel: NotebookPanel,
 ) {
-  const { name, path: filePath } = fileInfo;
+  const { name, path: filePath, mimetype } = fileInfo;
   const {
     context: { path: notebookPath },
   } = notebookPanel;
@@ -28,15 +29,14 @@ export default function generateLoadCode(
   let loadCode = `${varName} = load_log("${relativeFilePath}")`;
 
   // Add preview code (specific to log type)
-  const fileExt = path.extname(name);
-  if (fileExt === ".json") {
+  if (mimetype === jsonMimetype) {
     loadCode += `
 print(${varName}.data)`;
-  } else if (fileExt === ".nc") {
+  } else if (mimetype === netcdfMimetype) {
     loadCode += `
 for var_name in ${varName}.data:
-  print(f"${varName}.data[\\"{var_name}\\"]")
-  ${varName}.data[var_name].plot()`;
+    print(f"${varName}.data[\\"{var_name}\\"]")
+    ${varName}.data[var_name].plot()`;
   }
 
   return loadCode;

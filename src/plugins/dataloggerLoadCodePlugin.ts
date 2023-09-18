@@ -3,14 +3,14 @@ import { ILauncher } from "@jupyterlab/launcher";
 import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
 import { NotebookPanel, NotebookActions, INotebookTracker } from "@jupyterlab/notebook";
 import { addIcon } from "@jupyterlab/ui-components";
+import { jsonMimetype, netcdfMimetype } from "@/constants";
 import { generateLoadCode, addToNotebook } from "@/utils";
 import { chartLineIcon, chartLineIconUrl } from "@/icons";
 
-const logMimetypes = new Set(["application/json", "application/x-netcdf"]);
+const logMimetypes = new Set([jsonMimetype, netcdfMimetype]);
 
 const dataloggerNotebookImports = [
   "import numpy as np",
-  "import pandas as pd",
   "import xarray as xr",
   "import matplotlib.pyplot as plt",
   "from datalogger import load_log",
