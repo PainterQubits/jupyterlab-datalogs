@@ -13,7 +13,7 @@ const dataloggerNotebookImports = [
   "import numpy as np",
   "import xarray as xr",
   "import matplotlib.pyplot as plt",
-  "from datalogger import load_log",
+  "from datalogger import load_log, DictLog, DataLog",
 ];
 
 /**

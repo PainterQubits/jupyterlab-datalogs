@@ -24,20 +24,27 @@ export default function generateLoadCode(
     varIndex += 1;
   }
 
-  // Generate the load code
-  const relativeFilePath = path.relative(path.dirname(notebookPath), filePath);
-  let loadCode = `${varName} = load_log("${relativeFilePath}")`;
-
-  // Add preview code (specific to log type)
+  // Generate the load function and preview code depending on log type
+  let loadFunction: string;
+  let previewCode: string;
   if (mimetype === jsonMimetype) {
-    loadCode += `
+    loadFunction = "DictLog.load";
+    previewCode = `
 print(${varName}.data)`;
   } else if (mimetype === netcdfMimetype) {
-    loadCode += `
+    loadFunction = "DataLog.load";
+    previewCode = `
 for var_name in ${varName}.data:
     print(f"${varName}.data[\\"{var_name}\\"]")
     ${varName}.data[var_name].plot()`;
+  } else {
+    loadFunction = "load_log";
+    previewCode = "";
   }
 
-  return loadCode;
+  // Get the relative log path
+  const relativeFilePath = path.relative(path.dirname(notebookPath), filePath);
+
+  // Return load code
+  return `${varName} = ${loadFunction}("${relativeFilePath}")${previewCode}`;
 }
