@@ -42,7 +42,7 @@ dependencies = [
   "datalogger>=0.1.1",
   "numpy>=1.25.2,<2",
   "xarray>=2023.8.0",
-  "matplotlib>=3.7.3,<4"
+  "matplotlib>=3.7.3,<4",
 ]
 
 [tool.hatch.envs.default.env-vars]
