@@ -2,6 +2,23 @@
 
 JupyterLab extension for DataLogger.
 
+## Installation
+
+Install the latest version of DataLogger JupyterLab using pip:
+
+```
+pip install -U datalogger-jupyterlab --extra-index-url https://painterqubits.github.io/datalogger-jupyterlab/releases
+```
+
+In order to use this JupyterLab extension, JupyterLab version 4 must be installed as well.
+See https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html for
+installation instructions.
+
+Also, in order to make use of this extension, DataLogger should be installed in the active
+Python kernel. See https://github.com/PainterQubits/datalogger for installation
+instructions.
+
+
 ## Development
 
 To develop, the following dependencies must be installed:
