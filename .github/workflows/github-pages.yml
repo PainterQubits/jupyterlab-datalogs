@@ -48,10 +48,10 @@ jobs:
               </a>
               <a href="datalogger_jupyterlab-${{ env.DATALOGGER_JUPYTERLAB_VERSION }}.tar.gz">datalogger_jupyterlab-${{ env.DATALOGGER_JUPYTERLAB_VERSION }}.tar.gz</a>
             </body>
-          </html>' > _site/releases/datalogger/index.html
+          </html>' > _site/releases/datalogger-jupyterlab/index.html
 
-      - name: Move package files into _site/releases/datalogger
-        run: mv dist/* _site/releases/datalogger
+      - name: Move package files into _site/releases/datalogger-jupyterlab
+        run: mv dist/* _site/releases/datalogger-jupyterlab
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v1
