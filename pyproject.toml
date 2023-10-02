@@ -36,6 +36,9 @@ Repository = "https://github.com/PainterQubits/datalogger-jupyterlab"
 artifacts = ["/labextension"]
 exclude = ["**/*"]
 
+[tool.hatch.build.targets.wheel]
+exclude = ["datalogger_jupyterlab"]
+
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/datalogger-jupyterlab"
 "install.json" = "share/jupyter/labextensions/datalogger-jupyterlab/install.json"
