@@ -1,8 +1,17 @@
 [project]
 name = "datalogger-jupyterlab"
+version = "0.1.0"
+description = "JupyterLab extension for DataLogger."
+authors = [
+  { name = "Alex Hadley", email = "alexhad6@gmail.com" },
+]
 license = { file = "LICENSE" }
 readme = "README.md"
-requires-python = ">=3.9"
+keywords = [
+  "jupyter",
+  "jupyterlab",
+  "jupyterlab-extension"
+]
 classifiers = [
   "Framework :: Jupyter",
   "Framework :: Jupyter :: JupyterLab",
@@ -16,11 +25,12 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
 ]
+requires-python = ">=3.9,<3.13"
 dependencies = []
-dynamic = ["version", "description", "authors", "keywords", "urls"]
 
-[tool.hatch.version]
-source = "nodejs"
+[project.urls]
+Homepage = "https://github.com/PainterQubits/datalogger-jupyterlab"
+Repository = "https://github.com/PainterQubits/datalogger-jupyterlab"
 
 [tool.hatch.metadata.hooks.nodejs]
 fields = ["description", "authors", "urls", "keywords"]
@@ -36,18 +46,15 @@ exclude = ["**/*"]
 [tool.hatch.envs.default]
 dependencies = [
   "jupyterlab>=4.0.6,<5",
-  "jupyterlab-lsp>=5.0.0rc0,<6",
-  "python-lsp-server[flake8]>=1.8.0,<2",
-  "pylsp-mypy>=0.6.7,<0.7",
   "datalogger>=0.1.1",
-  "numpy>=1.25.2,<2",
-  "xarray>=2023.8.0",
-  "matplotlib>=3.7.3,<4",
+  "numpy>=1.26.0,<2",
+  "xarray>=2023.9.0",
+  "matplotlib>=3.8.0,<4",
 ]
 
 [tool.hatch.envs.default.env-vars]
 PIP_EXTRA_INDEX_URL = "https://painterqubits.github.io/datalogger/releases"
 
 [build-system]
-requires = ["hatchling", "hatch-nodejs-version"]
+requires = ["hatchling"]
 build-backend = "hatchling.build"

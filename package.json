@@ -2,25 +2,6 @@
   "name": "datalogger-jupyterlab",
   "private": true,
   "version": "0.1.0",
-  "description": "JupyterLab extension for DataLogger.",
-  "keywords": [
-    "jupyter",
-    "jupyterlab",
-    "jupyterlab-extension"
-  ],
-  "homepage": "https://github.com/PainterQubits/datalogger-jupyterlab",
-  "bugs": {
-    "url": "https://github.com/PainterQubits/datalogger-jupyterlab/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/PainterQubits/datalogger-jupyterlab.git"
-  },
-  "license": "BSD-3-Clause",
-  "author": {
-    "name": "Alex Hadley",
-    "email": "alexhad6@gmail.com"
-  },
   "main": "lib/index.js",
   "jupyterlab": {
     "extension": true,

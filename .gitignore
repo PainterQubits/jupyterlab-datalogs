@@ -20,4 +20,3 @@ __pycache__/
 # Yarn
 node_modules/
 .yarn/
-.pnp.*
