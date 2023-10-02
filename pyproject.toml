@@ -55,6 +55,15 @@ dependencies = [
 [tool.hatch.envs.default.env-vars]
 PIP_EXTRA_INDEX_URL = "https://painterqubits.github.io/datalogger/releases"
 
+[tool.hatch.envs.jupyterlab]
+detached = true
+dependencies = [
+  "jupyterlab>=4.0.6,<5",
+]
+
+[tool.hatch.envs.jupyterlab.scripts]
+build = "jupyter labextension build ."
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
