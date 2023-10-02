@@ -32,9 +32,6 @@ dependencies = []
 Homepage = "https://github.com/PainterQubits/datalogger-jupyterlab"
 Repository = "https://github.com/PainterQubits/datalogger-jupyterlab"
 
-[tool.hatch.metadata.hooks.nodejs]
-fields = ["description", "authors", "urls", "keywords"]
-
 [tool.hatch.build.targets.sdist]
 artifacts = ["/labextension"]
 exclude = ["**/*"]
