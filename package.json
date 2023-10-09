@@ -2,6 +2,8 @@
   "name": "datalogger-jupyterlab",
   "private": true,
   "version": "0.1.0",
+  "description": "JupyterLab extension for DataLogger.",
+  "homepage": "https://github.com/PainterQubits/datalogger-jupyterlab",
   "main": "lib/index.js",
   "jupyterlab": {
     "extension": true,
@@ -10,7 +12,7 @@
     "webpackConfig": "./webpack.config.js"
   },
   "scripts": {
-    "dev": "run-s build:lib dev:labextension && run-p watch:src watch:labextension jupyterlab",
+    "dev": "run-s build dev:labextension && run-p watch:src watch:labextension jupyterlab",
     "build": "run-s clean build:lib && hatch run jupyter labextension build .",
     "preview": "yarn build && hatch env prune && yarn jupyterlab",
     "clean": "rm -rf lib tsconfig.tsbuildinfo labextension",

@@ -33,11 +33,8 @@ Homepage = "https://github.com/PainterQubits/datalogger-jupyterlab"
 Repository = "https://github.com/PainterQubits/datalogger-jupyterlab"
 
 [tool.hatch.build.targets.sdist]
-artifacts = ["/labextension"]
+artifacts = ["/datalogger_jupyterlab", "/labextension"]
 exclude = ["**/*"]
-
-[tool.hatch.build.targets.wheel]
-exclude = ["datalogger_jupyterlab"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/datalogger-jupyterlab"
