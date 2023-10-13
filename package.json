@@ -29,7 +29,8 @@
     "@jupyterlab/filebrowser": "^4.0.6",
     "@jupyterlab/launcher": "^4.0.6",
     "@jupyterlab/notebook": "^4.0.6",
-    "@jupyterlab/ui-components": "^4.0.6"
+    "@jupyterlab/ui-components": "^4.0.6",
+    "@lumino/signaling": "^2.1.2"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^4.0.6",
