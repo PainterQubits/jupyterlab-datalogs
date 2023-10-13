@@ -3,6 +3,11 @@ import { FileBrowser, DirListing, IDefaultFileBrowser } from "@jupyterlab/filebr
 import { ReactWidget, UseSignal } from "@jupyterlab/ui-components";
 import { ISignal, Signal } from "@lumino/signaling";
 import { pdfMimetype } from "@/constants";
+import { pdfjs, Document, Page } from "react-pdf";
+import pdfjsWorkerUrl from "pdfjs-dist/build/pdf.worker.js?file";
+
+// Set the URL for the PDF.js worker
+pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorkerUrl;
 
 declare module "@jupyterlab/filebrowser" {
   interface FileBrowser {
@@ -31,40 +36,48 @@ Object.defineProperty(DirListing.prototype, "items", {
 });
 
 function PdfComponent({ pdfData }: { pdfData: string | undefined }) {
+  if (pdfData === undefined) return null;
+
   return (
-    <object
-      type={pdfMimetype}
-      data={`data:${pdfMimetype};base64,${pdfData ?? ""}`}
-      width="100%"
-      height="100%"
-    />
+    <Document file={`data:${pdfMimetype};base64,${pdfData}`}>
+      <Page pageNumber={1} />
+    </Document>
   );
 }
 
-function UseSignalComponent({ signal }: { signal: ISignal<PdfPreview, string> }) {
+function UseSignalComponent({
+  signal,
+  data,
+}: {
+  signal: ISignal<PdfPreview, string>;
+  data?: string;
+}) {
   return (
-    <UseSignal signal={signal}>
+    <UseSignal signal={signal} initialArgs={data}>
       {(_, pdfData) => <PdfComponent pdfData={pdfData} />}
     </UseSignal>
   );
 }
 
 class PdfPreview extends ReactWidget {
-  constructor() {
+  constructor(data: string) {
     super();
     this.id = "pdf-preview";
     this.title.label = "PDF Preview";
     this.title.closable = true;
+    this._data = data;
   }
 
-  render() {
-    return <UseSignalComponent signal={this._updateData} />;
+  protected render() {
+    return <UseSignalComponent signal={this._updateData} data={this._data} />;
   }
 
-  updateData(newData: string) {
-    this._updateData.emit(newData);
+  updateData(data: string) {
+    this._data = data;
+    this._updateData.emit(data);
   }
 
+  private _data: string;
   private _updateData = new Signal<this, string>(this);
 }
 
@@ -77,25 +90,29 @@ const pdfPreviewPlugin: JupyterFrontEndPlugin<void> = {
     { serviceManager, shell }: JupyterFrontEnd,
     { dirListing, content: { node: fileBrowserNode } }: IDefaultFileBrowser,
   ) => {
-    const pdfPreview = new PdfPreview();
-    let currentPdfContent = "";
+    let pdfPreview: PdfPreview | null = null;
+    let currentPdfPath: string | null = null;
     fileBrowserNode.addEventListener("mouseover", ({ target }) => {
       const sortedItems = [...dirListing.sortedItems()];
       dirListing.items.forEach((itemNode, itemIndex) => {
         if (target instanceof Node && itemNode.contains(target)) {
           const { path, mimetype } = sortedItems[itemIndex];
+
+          if (currentPdfPath === path) return;
+          currentPdfPath = path;
+
           if (mimetype === pdfMimetype) {
             (async () => {
               const { content } = await serviceManager.contents.get(path);
-              if (
-                content.length === currentPdfContent.length &&
-                content === currentPdfContent
-              ) {
-                // Content has not changed, so don't rerender
-                return;
+
+              if (currentPdfPath !== path) return;
+
+              if (!pdfPreview || pdfPreview.isDisposed) {
+                pdfPreview = new PdfPreview(content);
+              } else {
+                pdfPreview.updateData(content);
               }
-              currentPdfContent = content;
-              pdfPreview.updateData(content);
+
               if (!pdfPreview.isAttached) {
                 shell.add(pdfPreview);
               }
