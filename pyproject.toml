@@ -42,7 +42,7 @@ exclude = ["**/*"]
 
 [tool.hatch.envs.default]
 dependencies = [
-  "jupyterlab>=4.0.6,<5",
+  "jupyterlab>=4.0.7,<5",
   "datalogger>=0.1.1",
   "numpy>=1.26.0,<2",
   "xarray>=2023.9.0",
@@ -55,7 +55,7 @@ PIP_EXTRA_INDEX_URL = "https://painterqubits.github.io/datalogger/releases"
 [tool.hatch.envs.jupyterlab]
 detached = true
 dependencies = [
-  "jupyterlab>=4.0.6,<5",
+  "jupyterlab>=4.0.7,<5",
 ]
 
 [tool.hatch.envs.jupyterlab.scripts]
