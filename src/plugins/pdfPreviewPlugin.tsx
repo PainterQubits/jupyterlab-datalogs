@@ -1,9 +1,10 @@
+import { useState, useEffect } from "react";
+import { pdfjs, Document, Thumbnail } from "react-pdf";
+import { ISignal, Signal } from "@lumino/signaling";
 import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application";
 import { Contents } from "@jupyterlab/services";
 import { FileBrowser, DirListing, IDefaultFileBrowser } from "@jupyterlab/filebrowser";
 import { ReactWidget, UseSignal } from "@jupyterlab/ui-components";
-import { ISignal, Signal } from "@lumino/signaling";
-import { pdfjs, Document, Page } from "react-pdf";
 import { pdfMimetype } from "@/constants";
 import pdfjsWorkerUrl from "pdfjs-dist/build/pdf.worker.js?file";
 
@@ -47,13 +48,17 @@ Object.defineProperty(DirListing.prototype, "itemNodes", {
 });
 
 const pdfPreviewConstants = {
-  width: 150,
-  height: 150,
+  width: 200,
   borderWidth: 1,
   gap: 10,
-};
+} as const;
 
-function calcPosition(clientX: number, clientY: number, parent: Element) {
+function calcPosition(
+  clientX: number,
+  clientY: number,
+  parent: Element,
+  previewHeightWithoutBorders: number,
+) {
   const {
     top: parentTop,
     left: parentLeft,
@@ -63,60 +68,70 @@ function calcPosition(clientX: number, clientY: number, parent: Element) {
   const x = clientX - parentLeft;
   const y = clientY - parentTop;
 
-  const {
-    width: previewWidthWithoutBorders,
-    height: previewHeightWithoutBorders,
-    borderWidth,
-    gap,
-  } = pdfPreviewConstants;
+  const { width: previewWidthWithoutBorders, borderWidth, gap } = pdfPreviewConstants;
   const previewWidth = previewWidthWithoutBorders + 2 * borderWidth;
   const previewHeight = previewHeightWithoutBorders + 2 * borderWidth;
   const previewWidthWithGap = previewWidth + gap;
   const previewHeightWithGap = previewHeight + gap;
 
-  const left =
-    x + previewWidthWithGap > maxX && x >= previewWidthWithGap
-      ? x - previewWidthWithGap
-      : Math.min(x + gap, maxX - previewWidth);
-
   const top =
-    y + previewHeightWithGap > maxY && y >= previewHeightWithGap
-      ? y - previewHeightWithGap
-      : Math.min(y + gap, maxY - previewHeight);
+    y + previewHeightWithGap > maxY ? Math.max(y - previewHeightWithGap, 0) : y + gap;
 
-  const hide =
+  let left = Math.max(x - previewWidthWithGap, 0);
+
+  const hide = () =>
     x >= left && x <= left + previewWidth && y >= top && y <= top + previewHeight;
 
-  return { top, left, hide };
+  if (hide()) {
+    left = Math.min(x + gap, maxX - previewWidth);
+  }
+
+  return { top, left, hide: hide() };
 }
 
 type PdfComponentProps = {
   pdfData: string;
-  top: number;
-  left: number;
-  hide: boolean;
+  clientX: number;
+  clientY: number;
+  parent: Element;
 };
 
-function PdfComponent({ pdfData, top, left, hide }: PdfComponentProps) {
-  const { width, height, borderWidth } = pdfPreviewConstants;
+function PdfComponent({ pdfData, clientX, clientY, parent }: PdfComponentProps) {
+  const { width, borderWidth } = pdfPreviewConstants;
+
+  const [renderedHeight, setRenderedHeight] = useState<number | null>(null);
+
+  useEffect(() => {
+    setRenderedHeight(null);
+  }, [pdfData]);
+
+  let top: number | undefined;
+  let left: number | undefined;
+  let hide = true;
+  if (renderedHeight !== null) {
+    ({ top, left, hide } = calcPosition(clientX, clientY, parent, renderedHeight));
+  }
+
+  const documentContainerStyle = {
+    display: hide ? "none" : undefined,
+    position: "fixed",
+    top,
+    left,
+    zIndex: 100,
+    overflow: "hidden",
+    width,
+    border: `${borderWidth}px solid var(--jp-border-color1)`,
+    background: "white",
+  } as const;
 
   return (
-    <div
-      style={{
-        display: hide ? "none" : undefined,
-        position: "fixed",
-        top,
-        left,
-        zIndex: 100,
-        overflow: "hidden",
-        width,
-        height,
-        border: `${borderWidth}px solid var(--jp-border-color1)`,
-        background: "white",
-      }}
-    >
+    <div style={documentContainerStyle}>
       <Document file={`data:${pdfMimetype};base64,${pdfData}`}>
-        <Page pageNumber={1} />
+        <Thumbnail
+          pageNumber={1}
+          width={pdfPreviewConstants.width}
+          onRenderSuccess={({ height }: { height: number }) => setRenderedHeight(height)}
+        />
       </Document>
     </div>
   );
@@ -146,10 +161,10 @@ class PdfPreview extends ReactWidget {
     this._update.emit();
   }
 
-  updatePosition({ top, left, hide }: { top: number; left: number; hide: boolean }) {
-    this._props.top = top;
-    this._props.left = left;
-    this._props.hide = hide;
+  updatePosition(clientX: number, clientY: number, parent: Element) {
+    this._props.clientX = clientX;
+    this._props.clientY = clientY;
+    this._props.parent = parent;
     this._update.emit();
   }
 
@@ -205,7 +220,9 @@ const pdfPreviewPlugin: JupyterFrontEndPlugin<void> = {
           if (pdfPreview === null || pdfPreview.isDisposed) {
             const newPdfPreview = new PdfPreview({
               pdfData: content,
-              ...calcPosition(clientX, clientY, fileBrowserNode),
+              clientX,
+              clientY,
+              parent: fileBrowserNode,
             });
             fileBrowser.addWidget(newPdfPreview);
             pdfState.pdfPreview = newPdfPreview;
@@ -230,7 +247,7 @@ const pdfPreviewPlugin: JupyterFrontEndPlugin<void> = {
     fileBrowserNode.addEventListener("mousemove", ({ clientX, clientY }) => {
       const { pdfPreview } = pdfState;
       if (pdfPreview !== null && !pdfPreview.isDisposed) {
-        pdfPreview.updatePosition(calcPosition(clientX, clientY, fileBrowserNode));
+        pdfPreview.updatePosition(clientX, clientY, fileBrowserNode);
       }
     });
   },
