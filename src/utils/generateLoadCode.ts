@@ -34,9 +34,11 @@ print(${varName}.data)`;
   } else if (mimetype === NETCDF_MIMETYPE) {
     loadFunction = "DataLog.load";
     previewCode = `
-for var_name in ${varName}.data:
-    print(f"${varName}.data[\\"{var_name}\\"]")
-    ${varName}.data[var_name].plot()`;
+for data_var_name in ${varName}.data:
+    print(f'${varName}.data["{data_var_name}"]')
+    plt.figure()
+    ${varName}.data[data_var_name].plot()
+    plt.show()`;
   } else {
     loadFunction = "load_log";
     previewCode = "";
