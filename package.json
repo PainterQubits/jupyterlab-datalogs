@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "run-s build dev:labextension && run-p watch:src watch:labextension jupyterlab",
     "build": "run-s clean build:lib && hatch run jupyter labextension build .",
-    "preview": "yarn build && hatch env prune && yarn jupyterlab",
+    "preview": "yarn build && hatch env remove default && yarn jupyterlab",
     "clean": "rm -rf lib tsconfig.tsbuildinfo labextension",
     "lint": "prettier --check .",
     "cp:icons": "mkdir -p lib/icons && cp src/icons/*.svg* lib/icons",
@@ -25,17 +25,22 @@
     "jupyterlab": "hatch run jupyter lab"
   },
   "dependencies": {
-    "@jupyterlab/application": "^4.0.6",
-    "@jupyterlab/filebrowser": "^4.0.6",
-    "@jupyterlab/launcher": "^4.0.6",
-    "@jupyterlab/notebook": "^4.0.6",
-    "@jupyterlab/ui-components": "^4.0.6"
+    "@jupyterlab/application": "^4.0.7",
+    "@jupyterlab/filebrowser": "^4.0.7",
+    "@jupyterlab/launcher": "^4.0.7",
+    "@jupyterlab/notebook": "^4.0.7",
+    "@jupyterlab/services": "^7.0.7",
+    "@jupyterlab/ui-components": "^4.0.7",
+    "@lumino/signaling": "^2.1.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-pdf": "^7.5.1"
   },
   "devDependencies": {
-    "@jupyterlab/builder": "^4.0.6",
+    "@jupyterlab/builder": "^4.0.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
   },
-  "packageManager": "yarn@3.6.3"
+  "packageManager": "yarn@3.6.4"
 }

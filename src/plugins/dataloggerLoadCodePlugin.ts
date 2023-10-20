@@ -3,11 +3,11 @@ import { ILauncher } from "@jupyterlab/launcher";
 import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
 import { NotebookPanel, NotebookActions, INotebookTracker } from "@jupyterlab/notebook";
 import { addIcon } from "@jupyterlab/ui-components";
-import { jsonMimetype, netcdfMimetype } from "@/constants";
+import { JSON_MIMETYPE, NETCDF_MIMETYPE } from "@/constants";
 import { generateLoadCode, addToNotebook } from "@/utils";
 import { chartLineIcon, chartLineIconUrl } from "@/icons";
 
-const logMimetypes = new Set([jsonMimetype, netcdfMimetype]);
+const logMimetypes = new Set([JSON_MIMETYPE, NETCDF_MIMETYPE]);
 
 const dataloggerNotebookImports = [
   "import numpy as np",

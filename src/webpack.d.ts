@@ -9,3 +9,9 @@ declare module "*.svg?url" {
   const dataUri: string;
   export default dataUri;
 }
+
+declare module "*?file" {
+  /** URL to the file. */
+  const url: string;
+  export default url;
+}

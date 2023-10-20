@@ -12,6 +12,10 @@ module.exports = {
         resourceQuery: /url/,
         type: "asset/inline",
       },
+      {
+        resourceQuery: /file/,
+        type: "asset/resource",
+      },
     ],
   },
 };

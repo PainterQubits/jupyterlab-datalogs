@@ -7,6 +7,10 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- JupyterLab plugin to preview PDF files in the file browser on hover.
+
 ## [0.1.0] (Oct 2 2023)
 
 ### Added
