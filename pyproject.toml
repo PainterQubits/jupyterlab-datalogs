@@ -44,17 +44,17 @@ exclude = ["**/*"]
 dependencies = [
   "jupyterlab>=4.0.7,<5",
   "flake8>=6.1.0,<7",
-  "pylint>=3.0.0,<4",
-  "mypy>=1.5.1,<2",
-  "black>=23.9.1,<24",
+  "pylint>=3.0.1,<4",
+  "mypy>=1.6.1,<2",
+  "black>=23.10.0,<24",
 ]
 
 [tool.hatch.envs.jupyterlab]
 dependencies = [
   "jupyterlab>=4.0.7,<5",
-  "datalogger>=0.1.1",
-  "numpy>=1.26.0,<2",
-  "xarray>=2023.9.0",
+  "datalogger>=0.2.0",
+  "numpy>=1.26.1,<2",
+  "xarray>=2023.10.1",
   "matplotlib>=3.8.0,<4",
 ]
 

@@ -44,7 +44,7 @@ jobs:
       - name: Enable corepack
         run: corepack enable
 
-      - name: Install dependencies
+      - name: Install Node dependencies
         run: yarn
 
       - name: Lint frontend
