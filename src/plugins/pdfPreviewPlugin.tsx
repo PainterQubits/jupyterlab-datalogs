@@ -116,7 +116,7 @@ class PdfPreviewWidget extends ReactWidget {
 /** Plugin that displays previews of PDF files in the file browser on hover. */
 const pdfPreviewPlugin: JupyterFrontEndPlugin<void> = {
   id: "datalogger-jupyterlab:pdf-preview",
-  description: "Preview PDFs in the file browser on hover.",
+  description: "Preview PDF files in the file browser on hover.",
   autoStart: true,
   requires: [IDefaultFileBrowser],
   activate: ({ serviceManager }: JupyterFrontEnd, fileBrowser: IDefaultFileBrowser) => {
