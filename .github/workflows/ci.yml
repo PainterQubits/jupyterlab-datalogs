@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  HATCH_VERSION: "1.7.0"
+  PYTHON_VERSION: "3.10"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install Hatch
+        run: pipx install hatch==${{ env.HATCH_VERSION }}
+
+      - name: Set up Python with pip cache
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+
+      - name: Yarn cache
+        uses: actions/cache@v3
+        with:
+          path: .yarn/cache
+          key: yarn-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Lint frontend
+        run: yarn lint
+
+      - name: Check Formatting (Black)
+        run: hatch run black datalogger_jupyterlab --check
+
+      - name: Lint (Flake8)
+        run: hatch run flake8 datalogger_jupyterlab
+
+      - name: Lint (Pylint)
+        run: hatch run pylint datalogger_jupyterlab
+
+      - name: Mypy cache
+        uses: actions/cache@v3
+        with:
+          path: .mypy_cache
+          key: mypy-${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-${{ github.sha }}
+          restore-keys: |
+            mypy-${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-
+
+      - name: Type Check (Mypy)
+        run: hatch run mypy datalogger_jupyterlab

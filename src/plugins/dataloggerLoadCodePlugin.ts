@@ -41,7 +41,7 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
         const files = [...fileBrowser.selectedItems()];
 
         // Get the current notebook
-        let { currentWidget: notebookPanel } = notebookTracker;
+        const { currentWidget: notebookPanel } = notebookTracker;
         if (notebookPanel === null) return;
         await notebookPanel.context.ready;
         const { content: notebook } = notebookPanel;

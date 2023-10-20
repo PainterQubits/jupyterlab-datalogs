@@ -18,7 +18,6 @@ Also, in order to make use of this extension, DataLogger should be installed in 
 Python kernel. See https://github.com/PainterQubits/datalogger for installation
 instructions.
 
-
 ## Development
 
 To develop, the following dependencies must be installed:
