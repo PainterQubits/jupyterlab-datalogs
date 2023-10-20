@@ -1,7 +1,7 @@
 import path from "path";
 import { NotebookPanel } from "@jupyterlab/notebook";
 import { FileInfo } from "@/types";
-import { jsonMimetype, netcdfMimetype } from "@/constants";
+import { JSON_MIMETYPE, NETCDF_MIMETYPE } from "@/constants";
 
 const varSuffix = "_log";
 
@@ -27,11 +27,11 @@ export default function generateLoadCode(
   // Generate the load function and preview code depending on log type
   let loadFunction: string;
   let previewCode: string;
-  if (mimetype === jsonMimetype) {
+  if (mimetype === JSON_MIMETYPE) {
     loadFunction = "DictLog.load";
     previewCode = `
 print(${varName}.data)`;
-  } else if (mimetype === netcdfMimetype) {
+  } else if (mimetype === NETCDF_MIMETYPE) {
     loadFunction = "DataLog.load";
     previewCode = `
 for var_name in ${varName}.data:

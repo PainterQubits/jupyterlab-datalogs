@@ -1,5 +1,5 @@
 import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application";
-import { netcdfMimetype } from "@/constants";
+import { NETCDF_MIMETYPE } from "@/constants";
 import { borderAllIcon } from "@/icons";
 
 /**
@@ -18,7 +18,7 @@ const netcdfFileTypePlugin: JupyterFrontEndPlugin<void> = {
         name: "netcdf",
         displayName: "NetCDF File",
         extensions: [".nc"],
-        mimeTypes: [netcdfMimetype],
+        mimeTypes: [NETCDF_MIMETYPE],
         contentType: "file",
         fileFormat: "base64",
         icon: borderAllIcon,
