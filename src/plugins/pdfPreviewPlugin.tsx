@@ -69,7 +69,7 @@ function PdfComponent({
   );
 }
 
-type UseSignalPdfComponentProps = {
+type SignalPdfComponentProps = {
   /** The PDF component will rerender when this signal emits. */
   update: ISignal<PdfPreviewWidget, void>;
   /** Props for the PDF component. */
@@ -77,7 +77,7 @@ type UseSignalPdfComponentProps = {
 };
 
 /** Wrapper around a PdfComponent that can update in response to a Lumino signal. */
-function SignalPdfComponent({ update, props }: UseSignalPdfComponentProps) {
+function SignalPdfComponent({ update, props }: SignalPdfComponentProps) {
   return <UseSignal signal={update}>{() => <PdfComponent {...props} />}</UseSignal>;
 }
 
