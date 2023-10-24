@@ -12,7 +12,7 @@
     "webpackConfig": "webpack.config.js"
   },
   "scripts": {
-    "dev": "yarn build && hatch run jupyter labextension develop --overwrite . && run-p watch:src watch:labextension jupyterlab",
+    "dev": "yarn build && hatch run jupyterlab:develop && run-p watch:src watch:labextension jupyterlab",
     "build": "run-s clean cp:icons && tsc && hatch run jupyter labextension build .",
     "preview": "yarn build && hatch env remove jupyterlab && yarn jupyterlab",
     "clean": "rm -rf lib tsconfig.tsbuildinfo labextension",
@@ -23,7 +23,10 @@
     "jupyterlab": "hatch run jupyterlab:start"
   },
   "dependencies": {
+    "@jupyter/collaboration": "^1.2.0",
     "@jupyterlab/application": "^4.0.7",
+    "@jupyterlab/apputils": "^4.1.7",
+    "@jupyterlab/docmanager": "^4.0.7",
     "@jupyterlab/filebrowser": "^4.0.7",
     "@jupyterlab/launcher": "^4.0.7",
     "@jupyterlab/notebook": "^4.0.7",
@@ -33,7 +36,8 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-pdf": "^7.5.1"
+    "react-pdf": "^7.5.1",
+    "y-protocols": "^1.0.6"
   },
   "devDependencies": {
     "@jupyterlab/builder": "^4.0.7",
