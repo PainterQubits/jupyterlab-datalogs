@@ -40,6 +40,7 @@ exclude = ["**/*"]
 "labextension" = "share/jupyter/labextensions/datalogger-jupyterlab"
 "install.json" = "share/jupyter/labextensions/datalogger-jupyterlab/install.json"
 
+# For building and linting
 [tool.hatch.envs.default]
 dependencies = [
   "jupyterlab>=4.0.7,<5",
@@ -49,9 +50,11 @@ dependencies = [
   "black>=23.10.0,<24",
 ]
 
+# For running JupterLab in development
 [tool.hatch.envs.jupyterlab]
 dependencies = [
   "jupyterlab>=4.0.7,<5",
+  "jupyter-collaboration>=1.2.0,<2",
   "datalogger>=0.2.0",
   "numpy>=1.26.1,<2",
   "xarray>=2023.10.1",
@@ -63,6 +66,7 @@ PIP_EXTRA_INDEX_URL = "https://painterqubits.github.io/datalogger/releases"
 
 [tool.hatch.envs.jupyterlab.scripts]
 start = "jupyter lab"
+develop = "jupyter labextension develop --overwrite ."
 
 [build-system]
 requires = ["hatchling"]
