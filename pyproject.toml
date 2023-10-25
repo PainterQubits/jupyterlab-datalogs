@@ -45,9 +45,9 @@ exclude = ["**/*"]
 dependencies = [
   "jupyterlab>=4.0.7,<5",
   "flake8>=6.1.0,<7",
-  "pylint>=3.0.1,<4",
+  "pylint>=3.0.2,<4",
   "mypy>=1.6.1,<2",
-  "black>=23.10.0,<24",
+  "black>=23.10.1,<24",
 ]
 
 # For running JupterLab in development
