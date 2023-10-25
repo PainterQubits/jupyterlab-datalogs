@@ -10,7 +10,7 @@ on:
 
 env:
   HATCH_VERSION: "1.7.0"
-  PYTHON_VERSION: "3.10"
+  PYTHON_VERSION: "3.9"
 
 jobs:
   ci:

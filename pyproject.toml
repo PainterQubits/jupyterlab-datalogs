@@ -1,6 +1,6 @@
 [project]
 name = "datalogger-jupyterlab"
-version = "0.2.0"
+version = "0.3.0"
 description = "JupyterLab extension for DataLogger."
 authors = [
   { name = "Alex Hadley", email = "alexhad6@gmail.com" },
@@ -61,7 +61,7 @@ dependencies = [
 dependencies = [
   "jupyterlab>=4.0.7,<5",
   "jupyter-collaboration>=1.2.0,<2",
-  "datalogger>=0.2.0",
+  "datalogger>=0.3.0",
   "numpy>=1.26.1,<2",
   "xarray>=2023.10.1",
   "matplotlib>=3.8.0,<4",
