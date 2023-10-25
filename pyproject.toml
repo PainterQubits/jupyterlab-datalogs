@@ -28,6 +28,12 @@ classifiers = [
 requires-python = ">=3.9,<3.13"
 dependencies = []
 
+[project.optional-dependencies]
+jupyterlab = [
+  "jupyterlab>=4.0.7,<5",
+  "jupyter-collaboration>=1.2.0,<2",
+]
+
 [project.urls]
 Homepage = "https://github.com/PainterQubits/datalogger-jupyterlab"
 Repository = "https://github.com/PainterQubits/datalogger-jupyterlab"

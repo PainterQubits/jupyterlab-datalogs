@@ -10,13 +10,31 @@ Install the latest version of DataLogger JupyterLab using pip:
 pip install -U datalogger-jupyterlab --extra-index-url https://painterqubits.github.io/datalogger-jupyterlab/releases
 ```
 
-In order to use this JupyterLab extension, JupyterLab version 4 must be installed as well.
-See https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html for
-installation instructions.
+This extension requires
+[JupyterLab]
+version 4 and the
+[JupyterLab Real-Time Collaboration]
+extension. To install both of these automatically along with DataLogger JupyterLab, use
+the `jupyterlab` extra:
 
-Also, in order to make use of this extension, DataLogger should be installed in the active
-Python kernel. See https://github.com/PainterQubits/datalogger for installation
+```
+pip install -U "datalogger-jupyterlab[jupyterlab]" --extra-index-url https://painterqubits.github.io/datalogger-jupyterlab/releases
+```
+
+While the Real-Time Collaboration extension is required in order to display open warning
+dialogs, the collaboration functionality can be disabled by running JupyterLab with the
+following option:
+
+```
+jupyter lab --YDocExtension.disable_rtc True
+```
+
+Also, in order to make the most of this extension, DataLogger should be installed in the
+active Python kernel. See https://github.com/PainterQubits/datalogger for installation
 instructions.
+
+[JupyterLab]: https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html
+[JupyterLab Real-Time Collaboration]: https://jupyterlab-realtime-collaboration.readthedocs.io/en/latest/
 
 ## Development
 
