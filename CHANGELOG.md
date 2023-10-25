@@ -7,6 +7,11 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- JupyterLab plugin to display a warning dialog when opening a file that another user has
+  open.
+
 ## [0.2.0] (Oct 20 2023)
 
 ### Added
