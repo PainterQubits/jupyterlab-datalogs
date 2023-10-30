@@ -7,6 +7,8 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.3.1] (Oct 30 2023)
+
 ### Fixed
 
 - PDF preview displaying before being positioned properly.
@@ -35,7 +37,8 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - JupyterLab plugin to add NetCDF mimetype and file icon.
 - JupyterLab plugin that adds shortcuts to generate code that loads logs with DataLogger.
 
-[unreleased]: https://github.com/PainterQubits/datalogger-jupyterlab/compare/v0.3.0...main
+[unreleased]: https://github.com/PainterQubits/datalogger-jupyterlab/compare/v0.3.1...main
+[0.3.1]: https://github.com/PainterQubits/datalogger-jupyterlab/releases/tag/v0.3.1
 [0.3.0]: https://github.com/PainterQubits/datalogger-jupyterlab/releases/tag/v0.3.0
 [0.2.0]: https://github.com/PainterQubits/datalogger-jupyterlab/releases/tag/v0.2.0
 [0.1.0]: https://github.com/PainterQubits/datalogger-jupyterlab/releases/tag/v0.1.0

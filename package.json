@@ -1,7 +1,7 @@
 {
   "name": "datalogger-jupyterlab",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "JupyterLab extension for DataLogger.",
   "homepage": "https://github.com/PainterQubits/datalogger-jupyterlab",
   "main": "lib/index.js",

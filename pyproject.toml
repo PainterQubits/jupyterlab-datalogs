@@ -1,6 +1,6 @@
 [project]
 name = "datalogger-jupyterlab"
-version = "0.3.0"
+version = "0.3.1"
 description = "JupyterLab extension for DataLogger."
 authors = [
   { name = "Alex Hadley", email = "alexhad6@gmail.com" },
