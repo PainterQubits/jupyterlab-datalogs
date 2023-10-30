@@ -12,6 +12,7 @@ import pdfjsWorkerUrl from "pdfjs-dist/build/pdf.worker.js?file";
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorkerUrl;
 
 const pdfPreviewStyle = {
+  display: "none",
   position: "fixed",
   zIndex: 100,
   overflow: "hidden",
@@ -53,7 +54,9 @@ function PdfComponent({
       parentElement,
       renderedHeight,
     );
-    positionStyle = { display: hide ? "none" : undefined, top, left };
+    if (!hide) {
+      positionStyle = { display: undefined, top, left };
+    }
   }
 
   return (

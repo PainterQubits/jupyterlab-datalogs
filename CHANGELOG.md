@@ -7,6 +7,10 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- PDF preview displaying before being positioned properly.
+
 ## [0.3.0] (Oct 25 2023)
 
 ### Added
