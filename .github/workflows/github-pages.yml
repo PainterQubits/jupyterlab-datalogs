@@ -76,7 +76,7 @@ jobs:
         run: mv dist/* _site/releases/datalogger-jupyterlab
 
       - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v2
 
   deploy:
     needs: build
