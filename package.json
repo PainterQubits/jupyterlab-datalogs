@@ -26,7 +26,7 @@
     "@jupyter/collaboration": "^1.2.0",
     "@jupyterlab/application": "^4.0.7",
     "@jupyterlab/apputils": "^4.1.7",
-    "@jupyterlab/docmanager": "^4.0.7",
+    "@jupyterlab/docmanager": "^4.0.8",
     "@jupyterlab/filebrowser": "^4.0.7",
     "@jupyterlab/launcher": "^4.0.7",
     "@jupyterlab/notebook": "^4.0.7",
