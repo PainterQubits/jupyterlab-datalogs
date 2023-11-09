@@ -7,6 +7,16 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Added
+
+- Recommended plugins (including the PDF preview and open warning plugins) can be
+  installed using the `plugins` extra.
+
+### Changed
+
+- Moved PDF preview plugin to https://github.com/PainterQubits/jupyterlab-pdf-preview.
+- Moved open warning plugin to https://github.com/PainterQubits/jupyterlab-open-warning.
+
 ## [0.3.1] (Oct 30 2023)
 
 ### Fixed

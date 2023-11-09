@@ -1,11 +1,11 @@
+[build-system]
+requires = ["hatchling", "hatch-nodejs-version", "jupyterlab>=4.0.8,<5"]
+build-backend = "hatchling.build"
+
 [project]
 name = "jupyterlab-datalogger"
-version = "0.3.1"
-description = "JupyterLab extension for DataLogger."
-authors = [{ name = "Alex Hadley", email = "contact@alexhadley.net" }]
 license = { file = "LICENSE" }
 readme = "README.md"
-keywords = ["jupyter", "jupyterlab", "jupyterlab-extension"]
 classifiers = [
   "Framework :: Jupyter",
   "Framework :: Jupyter :: JupyterLab",
@@ -21,51 +21,51 @@ classifiers = [
   "Programming Language :: Python :: 3.12",
 ]
 requires-python = ">=3.9"
-dependencies = []
+dynamic = ["version", "description", "authors", "urls", "keywords"]
 
-[project.optional-dependencies]
-jupyterlab = ["jupyterlab>=4.0.8,<5", "jupyter-collaboration>=1.2.0,<2"]
+[tool.hatch.version]
+source = "nodejs"
 
-[project.urls]
-Homepage = "https://github.com/PainterQubits/jupyterlab-datalogger"
-Repository = "https://github.com/PainterQubits/jupyterlab-datalogger"
+[tool.hatch.metadata.hooks.nodejs]
+fields = ["description", "authors", "urls", "keywords"]
 
 [tool.hatch.build.targets.sdist]
-artifacts = ["/datalogger_jupyterlab", "/labextension"]
-exclude = ["**/*"]
+artifacts = ["labextension"]
 
 [tool.hatch.build.targets.wheel.shared-data]
 "labextension" = "share/jupyter/labextensions/jupyterlab-datalogger"
 "install.json" = "share/jupyter/labextensions/jupyterlab-datalogger/install.json"
 
-# For building and linting
-[tool.hatch.envs.default]
-dependencies = [
-  "jupyterlab>=4.0.7,<5",
-  "flake8>=6.1.0,<7",
-  "pylint>=3.0.2,<4",
-  "mypy>=1.6.1,<2",
-  "black>=23.10.1,<24",
-]
+[tool.hatch.build.hooks.jupyter-builder]
+dependencies = ["hatch-jupyter-builder>=0.8.3"]
+build-function = "hatch_jupyter_builder.npm_builder"
+ensured-targets = ["labextension/package.json"]
+skip-if-exists = ["labextension/package.json"]
 
-# For running JupterLab in development
-[tool.hatch.envs.jupyterlab]
+[tool.hatch.build.hooks.jupyter-builder.build-kwargs]
+build_cmd = "build"
+npm = ["jlpm"]
+
+[tool.hatch.envs.default]
+description = "For running JupyterLab in development"
 dependencies = [
-  "jupyterlab>=4.0.7,<5",
-  "jupyter-collaboration>=1.2.0,<2",
+  "jupyterlab>=4.0.8,<5",
   "datalogger>=0.2.0",
   "numpy>=1.26.1,<2",
   "xarray>=2023.10.1",
   "matplotlib>=3.8.0,<4",
 ]
 
-[tool.hatch.envs.jupyterlab.env-vars]
+[tool.hatch.envs.default.env-vars]
 PIP_EXTRA_INDEX_URL = "https://painterqubits.github.io/datalogger/releases"
 
-[tool.hatch.envs.jupyterlab.scripts]
-start = "jupyter lab"
-develop = "jupyter labextension develop --overwrite ."
+[tool.hatch.envs.default.scripts]
+dev = "jlpm dev"
+build = "jlpm build"
+clean = "jlpm clean"
+lint = "jlpm lint"
 
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+[tool.hatch.envs.ci]
+description = "For running jlpm in CI without building and installing this package"
+detached = true
+dependencies = ["jupyterlab>=4.0.8,<5"]

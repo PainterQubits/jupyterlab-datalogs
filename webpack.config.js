@@ -9,12 +9,8 @@ module.exports = {
   module: {
     rules: [
       {
-        resourceQuery: /url/,
+        resourceQuery: /data-url/,
         type: "asset/inline",
-      },
-      {
-        resourceQuery: /file/,
-        type: "asset/resource",
       },
     ],
   },

@@ -3,7 +3,7 @@ import { ILauncher } from "@jupyterlab/launcher";
 import { IFileBrowserFactory } from "@jupyterlab/filebrowser";
 import { NotebookPanel, NotebookActions, INotebookTracker } from "@jupyterlab/notebook";
 import { addIcon } from "@jupyterlab/ui-components";
-import { JSON_MIMETYPE, NETCDF_MIMETYPE } from "@/constants";
+import { PACKAGE_NAME, JSON_MIMETYPE, NETCDF_MIMETYPE } from "@/constants";
 import { generateLoadCode, addToNotebook } from "@/utils";
 import { chartLineIcon, chartLineIconUrl } from "@/icons";
 
@@ -21,8 +21,8 @@ const dataloggerNotebookImports = [
  * adds items to the file browser context menu, the main menu, and the Launcher to
  * add code to notebooks for loading log files using DataLogger.
  */
-const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
-  id: "jupyterlab-datalogger:datalogger-load-code",
+export const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
+  id: `${PACKAGE_NAME}:datalogger-load-code-plugin`,
   description: "Shortcuts to generate code that loads logs with DataLogger.",
   autoStart: true,
   requires: [ILauncher, IFileBrowserFactory, INotebookTracker],
@@ -32,7 +32,7 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
     { tracker: fileBrowserTracker }: IFileBrowserFactory,
     notebookTracker: INotebookTracker,
   ) => {
-    commands.addCommand("jupyterlab-datalogger:add-datalogger-load-code", {
+    commands.addCommand(`${PACKAGE_NAME}:add-datalogger-load-code-command`, {
       label: "Add DataLogger Load Code",
       icon: addIcon,
       execute: async () => {
@@ -84,21 +84,21 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
     }
 
     // Used in file browser context menu
-    commands.addCommand("jupyterlab-datalogger:new-datalogger-notebook", {
+    commands.addCommand(`${PACKAGE_NAME}:new-datalogger-notebook-command`, {
       label: "New DataLogger Notebook",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
     // Used in main menu File > New
-    commands.addCommand("jupyterlab-datalogger:datalogger-notebook", {
+    commands.addCommand(`${PACKAGE_NAME}:datalogger-notebook-command`, {
       label: "DataLogger Notebook",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
     // Used in Launcher
-    commands.addCommand("jupyterlab-datalogger:datalogger", {
+    commands.addCommand(`${PACKAGE_NAME}:datalogger-command`, {
       label: "DataLogger",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
@@ -106,7 +106,7 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
 
     launcher.add({
       category: "Notebook",
-      command: "jupyterlab-datalogger:datalogger",
+      command: `${PACKAGE_NAME}:datalogger-command`,
       kernelIconUrl: chartLineIconUrl,
     });
   },

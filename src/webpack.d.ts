@@ -4,14 +4,8 @@ declare module "*.svg" {
   export default contents;
 }
 
-declare module "*.svg?url" {
-  /** URL (data URI) for the SVG. */
-  const dataUri: string;
-  export default dataUri;
-}
-
-declare module "*?file" {
-  /** URL to the file. */
-  const url: string;
-  export default url;
+declare module "*?data-url" {
+  /** Data URL for the file. */
+  const dataUrl: string;
+  export default dataUrl;
 }

@@ -1,15 +1,16 @@
 import { LabIcon } from "@jupyterlab/ui-components";
+import { PACKAGE_NAME } from "@/constants";
 import borderAllSvgstring from "./border-all.svg";
 import chartLineSvgstring from "./chart-line.svg";
 
 export const borderAllIcon = new LabIcon({
-  name: "jupyterlab-datalogger:border-all",
+  name: `${PACKAGE_NAME}:border-all-icon`,
   svgstr: borderAllSvgstring,
 });
 
 export const chartLineIcon = new LabIcon({
-  name: "jupyterlab-datalogger:chart-line",
+  name: `${PACKAGE_NAME}:chart-line-icon`,
   svgstr: chartLineSvgstring,
 });
 
-export { default as chartLineIconUrl } from "./chart-line.svg?url";
+export { default as chartLineIconUrl } from "./chart-line.svg?data-url";

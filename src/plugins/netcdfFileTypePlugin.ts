@@ -1,5 +1,5 @@
 import { JupyterFrontEnd, JupyterFrontEndPlugin } from "@jupyterlab/application";
-import { NETCDF_MIMETYPE } from "@/constants";
+import { PACKAGE_NAME, NETCDF_MIMETYPE } from "@/constants";
 import { borderAllIcon } from "@/icons";
 
 /**
@@ -8,8 +8,8 @@ import { borderAllIcon } from "@/icons";
  *
  * Note that this plugin does not allow NetCDF files to be previewed.
  */
-const netcdfFileTypePlugin: JupyterFrontEndPlugin<void> = {
-  id: "jupyterlab-datalogger:netcdf-file-type",
+export const netcdfFileTypePlugin: JupyterFrontEndPlugin<void> = {
+  id: `${PACKAGE_NAME}:netcdf-file-type-plugin`,
   description: "Adds NetCDF file type.",
   autoStart: true,
   activate: ({ docRegistry }: JupyterFrontEnd) => {

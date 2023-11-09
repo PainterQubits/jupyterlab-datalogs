@@ -5,10 +5,7 @@ import { JSON_MIMETYPE, NETCDF_MIMETYPE } from "@/constants";
 
 const varSuffix = "_log";
 
-export default function generateLoadCode(
-  fileInfo: FileInfo,
-  notebookPanel: NotebookPanel,
-) {
+export function generateLoadCode(fileInfo: FileInfo, notebookPanel: NotebookPanel) {
   const { name, path: filePath, mimetype } = fileInfo;
   const {
     context: { path: notebookPath },

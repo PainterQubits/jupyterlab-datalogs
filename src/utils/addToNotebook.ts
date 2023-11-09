@@ -5,7 +5,7 @@ type AddToNotebookOptions = {
   cellType?: "code" | "markdown" | "raw";
 };
 
-export default async function addToNotebook(
+export async function addToNotebook(
   notebook: Notebook,
   contents?: string,
   options?: AddToNotebookOptions,
