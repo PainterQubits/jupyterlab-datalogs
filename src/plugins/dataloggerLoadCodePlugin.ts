@@ -22,7 +22,7 @@ const dataloggerNotebookImports = [
  * add code to notebooks for loading log files using DataLogger.
  */
 const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
-  id: "datalogger-jupyterlab:datalogger-load-code",
+  id: "jupyterlab-datalogger:datalogger-load-code",
   description: "Shortcuts to generate code that loads logs with DataLogger.",
   autoStart: true,
   requires: [ILauncher, IFileBrowserFactory, INotebookTracker],
@@ -32,7 +32,7 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
     { tracker: fileBrowserTracker }: IFileBrowserFactory,
     notebookTracker: INotebookTracker,
   ) => {
-    commands.addCommand("datalogger-jupyterlab:add-datalogger-load-code", {
+    commands.addCommand("jupyterlab-datalogger:add-datalogger-load-code", {
       label: "Add DataLogger Load Code",
       icon: addIcon,
       execute: async () => {
@@ -84,21 +84,21 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
     }
 
     // Used in file browser context menu
-    commands.addCommand("datalogger-jupyterlab:new-datalogger-notebook", {
+    commands.addCommand("jupyterlab-datalogger:new-datalogger-notebook", {
       label: "New DataLogger Notebook",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
     // Used in main menu File > New
-    commands.addCommand("datalogger-jupyterlab:datalogger-notebook", {
+    commands.addCommand("jupyterlab-datalogger:datalogger-notebook", {
       label: "DataLogger Notebook",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
     });
 
     // Used in Launcher
-    commands.addCommand("datalogger-jupyterlab:datalogger", {
+    commands.addCommand("jupyterlab-datalogger:datalogger", {
       label: "DataLogger",
       icon: chartLineIcon,
       execute: newDataloggerNotebook,
@@ -106,7 +106,7 @@ const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
 
     launcher.add({
       category: "Notebook",
-      command: "datalogger-jupyterlab:datalogger",
+      command: "jupyterlab-datalogger:datalogger",
       kernelIconUrl: chartLineIconUrl,
     });
   },

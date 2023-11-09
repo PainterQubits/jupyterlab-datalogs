@@ -17,7 +17,7 @@ type AwarenessState = {
  * Plugin that displays a warning dialog when opening a file that another user has open.
  */
 const openWarningPlugin: JupyterFrontEndPlugin<void> = {
-  id: "datalogger-jupyterlab:open-warning",
+  id: "jupyterlab-datalogger:open-warning",
   description:
     "Displays a warning dialog when opening a file that another user has open.",
   autoStart: true,

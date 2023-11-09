@@ -3,12 +3,12 @@ import borderAllSvgstring from "./border-all.svg";
 import chartLineSvgstring from "./chart-line.svg";
 
 export const borderAllIcon = new LabIcon({
-  name: "datalogger-jupyterlab:border-all",
+  name: "jupyterlab-datalogger:border-all",
   svgstr: borderAllSvgstring,
 });
 
 export const chartLineIcon = new LabIcon({
-  name: "datalogger-jupyterlab:chart-line",
+  name: "jupyterlab-datalogger:chart-line",
   svgstr: chartLineSvgstring,
 });
 

@@ -5,7 +5,7 @@ on: workflow_dispatch
 env:
   HATCH_VERSION: "1.7.0"
   PYTHON_VERSION: "3.9"
-  DATALOGGER_JUPYTERLAB_VERSION: "0.3.1"
+  JUPYTERLAB_DATALOGGER_VERSION: "0.3.1"
 
 jobs:
   build:
@@ -55,25 +55,25 @@ jobs:
           echo '<!DOCTYPE html>
           <html>
             <body>
-              <a href="datalogger-jupyterlab/">datalogger-jupyterlab</a>
+              <a href="jupyterlab-datalogger/">jupyterlab-datalogger</a>
             </body>
           </html>' > _site/releases/index.html
 
-      - name: Create _site/releases/datalogger-jupyterlab/index.html
+      - name: Create _site/releases/jupyterlab-datalogger/index.html
         run: |
-          mkdir _site/releases/datalogger-jupyterlab
+          mkdir _site/releases/jupyterlab-datalogger
           echo '<!DOCTYPE html>
           <html>
             <body>
-              <a href="datalogger_jupyterlab-${{ env.DATALOGGER_JUPYTERLAB_VERSION }}-py3-none-any.whl">
-                datalogger_jupyterlab-${{ env.DATALOGGER_JUPYTERLAB_VERSION }}-py3-none-any.whl
+              <a href="jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}-py3-none-any.whl">
+                jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}-py3-none-any.whl
               </a>
-              <a href="datalogger_jupyterlab-${{ env.DATALOGGER_JUPYTERLAB_VERSION }}.tar.gz">datalogger_jupyterlab-${{ env.DATALOGGER_JUPYTERLAB_VERSION }}.tar.gz</a>
+              <a href="jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}.tar.gz">jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}.tar.gz</a>
             </body>
-          </html>' > _site/releases/datalogger-jupyterlab/index.html
+          </html>' > _site/releases/jupyterlab-datalogger/index.html
 
-      - name: Move package files into _site/releases/datalogger-jupyterlab
-        run: mv dist/* _site/releases/datalogger-jupyterlab
+      - name: Move package files into _site/releases/jupyterlab-datalogger
+        run: mv dist/* _site/releases/jupyterlab-datalogger
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v2

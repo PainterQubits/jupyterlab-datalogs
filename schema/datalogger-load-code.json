@@ -12,7 +12,7 @@
               "id": "jp-mainmenu-file-new",
               "items": [
                 {
-                  "command": "datalogger-jupyterlab:datalogger-notebook",
+                  "command": "jupyterlab-datalogger:datalogger-notebook",
                   "rank": 20
                 }
               ]
@@ -23,12 +23,12 @@
     ],
     "context": [
       {
-        "command": "datalogger-jupyterlab:add-datalogger-load-code",
+        "command": "jupyterlab-datalogger:add-datalogger-load-code",
         "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
         "rank": 3
       },
       {
-        "command": "datalogger-jupyterlab:new-datalogger-notebook",
+        "command": "jupyterlab-datalogger:new-datalogger-notebook",
         "selector": ".jp-DirListing-content",
         "rank": 53
       }

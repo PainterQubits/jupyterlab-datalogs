@@ -1,17 +1,11 @@
 [project]
-name = "datalogger-jupyterlab"
+name = "jupyterlab-datalogger"
 version = "0.3.1"
 description = "JupyterLab extension for DataLogger."
-authors = [
-  { name = "Alex Hadley", email = "alexhad6@gmail.com" },
-]
+authors = [{ name = "Alex Hadley", email = "contact@alexhadley.net" }]
 license = { file = "LICENSE" }
 readme = "README.md"
-keywords = [
-  "jupyter",
-  "jupyterlab",
-  "jupyterlab-extension"
-]
+keywords = ["jupyter", "jupyterlab", "jupyterlab-extension"]
 classifiers = [
   "Framework :: Jupyter",
   "Framework :: Jupyter :: JupyterLab",
@@ -24,27 +18,25 @@ classifiers = [
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
 ]
-requires-python = ">=3.9,<3.13"
+requires-python = ">=3.9"
 dependencies = []
 
 [project.optional-dependencies]
-jupyterlab = [
-  "jupyterlab>=4.0.7,<5",
-  "jupyter-collaboration>=1.2.0,<2",
-]
+jupyterlab = ["jupyterlab>=4.0.8,<5", "jupyter-collaboration>=1.2.0,<2"]
 
 [project.urls]
-Homepage = "https://github.com/PainterQubits/datalogger-jupyterlab"
-Repository = "https://github.com/PainterQubits/datalogger-jupyterlab"
+Homepage = "https://github.com/PainterQubits/jupyterlab-datalogger"
+Repository = "https://github.com/PainterQubits/jupyterlab-datalogger"
 
 [tool.hatch.build.targets.sdist]
 artifacts = ["/datalogger_jupyterlab", "/labextension"]
 exclude = ["**/*"]
 
 [tool.hatch.build.targets.wheel.shared-data]
-"labextension" = "share/jupyter/labextensions/datalogger-jupyterlab"
-"install.json" = "share/jupyter/labextensions/datalogger-jupyterlab/install.json"
+"labextension" = "share/jupyter/labextensions/jupyterlab-datalogger"
+"install.json" = "share/jupyter/labextensions/jupyterlab-datalogger/install.json"
 
 # For building and linting
 [tool.hatch.envs.default]

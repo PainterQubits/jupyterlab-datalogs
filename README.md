@@ -7,7 +7,7 @@ JupyterLab extension for DataLogger.
 Install the latest version of DataLogger JupyterLab using pip:
 
 ```
-pip install -U datalogger-jupyterlab --extra-index-url https://painterqubits.github.io/datalogger-jupyterlab/releases
+pip install -U jupyterlab-datalogger --extra-index-url https://painterqubits.github.io/jupyterlab-datalogger/releases
 ```
 
 This extension requires
@@ -18,7 +18,7 @@ extension. To install both of these automatically along with DataLogger JupyterL
 the `jupyterlab` extra:
 
 ```
-pip install -U "datalogger-jupyterlab[jupyterlab]" --extra-index-url https://painterqubits.github.io/datalogger-jupyterlab/releases
+pip install -U "jupyterlab-datalogger[jupyterlab]" --extra-index-url https://painterqubits.github.io/jupyterlab-datalogger/releases
 ```
 
 While the Real-Time Collaboration extension is required in order to display open warning

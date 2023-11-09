@@ -9,7 +9,7 @@ import { borderAllIcon } from "@/icons";
  * Note that this plugin does not allow NetCDF files to be previewed.
  */
 const netcdfFileTypePlugin: JupyterFrontEndPlugin<void> = {
-  id: "datalogger-jupyterlab:netcdf-file-type",
+  id: "jupyterlab-datalogger:netcdf-file-type",
   description: "Adds NetCDF file type.",
   autoStart: true,
   activate: ({ docRegistry }: JupyterFrontEnd) => {
