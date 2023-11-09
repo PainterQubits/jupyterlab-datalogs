@@ -23,6 +23,24 @@ classifiers = [
 requires-python = ">=3.9"
 dynamic = ["version", "description", "authors", "urls", "keywords"]
 
+[project.optional-dependencies]
+all = ["jupyterlab-datalogger[jupyterlab,analysis,plugins]"]
+jupyterlab = ["jupyterlab>=4.0.8,<5"]
+analysis = [
+  "datalogger @ https://painterqubits.github.io/datalogger/latest.tar.gz",
+  "numpy>=1.26.1,<2",
+  "xarray>=2023.10.1",
+  "matplotlib>=3.8.0,<4",
+]
+plugins = [
+  "jupyterlab-display-name @ https://painterqubits.github.io/jupyterlab-display-name/latest.tar.gz",
+  "jupyterlab-open-warning[rtc] @ https://painterqubits.github.io/jupyterlab-open-warning/latest.tar.gz",
+  "jupyterlab-pdf-preview @ https://painterqubits.github.io/jupyterlab-pdf-preview/latest.tar.gz",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [tool.hatch.version]
 source = "nodejs"
 
