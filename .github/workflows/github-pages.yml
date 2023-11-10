@@ -4,8 +4,9 @@ on: workflow_dispatch
 
 env:
   HATCH_VERSION: "1.7.0"
-  PYTHON_VERSION: "3.9"
-  JUPYTERLAB_DATALOGGER_VERSION: "0.3.1"
+  PACKAGE_VERSION: "0.3.1"
+  PACKAGE_NAME: "jupyterlab-datalogger"
+  PYTHON_PACKAGE_NAME: "jupyterlab_datalogger"
 
 jobs:
   build:
@@ -16,12 +17,6 @@ jobs:
 
       - name: Install Hatch
         run: pipx install hatch==${{ env.HATCH_VERSION }}
-
-      - name: Set up Python with pip cache
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: pip
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -36,17 +31,11 @@ jobs:
           restore-keys: |
             yarn-${{ runner.os }}-
 
-      - name: Enable corepack
-        run: corepack enable
-
-      - name: Install dependencies
-        run: yarn
-
-      - name: Build lab extension
-        run: yarn build
-
       - name: Build package
         run: hatch build
+
+      - name: Fix file permissions
+        run: chmod +r dist/*
 
       - name: Create _site/releases/index.html
         run: |
@@ -55,25 +44,30 @@ jobs:
           echo '<!DOCTYPE html>
           <html>
             <body>
-              <a href="jupyterlab-datalogger/">jupyterlab-datalogger</a>
+              <a href="${{ env.PACKAGE_NAME }}/">${{ env.PACKAGE_NAME }}</a>
             </body>
           </html>' > _site/releases/index.html
 
-      - name: Create _site/releases/jupyterlab-datalogger/index.html
+      - name: Create _site/releases/<package-name>/index.html
         run: |
-          mkdir _site/releases/jupyterlab-datalogger
+          mkdir _site/releases/${{ env.PACKAGE_NAME }}
           echo '<!DOCTYPE html>
           <html>
             <body>
-              <a href="jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}-py3-none-any.whl">
-                jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}-py3-none-any.whl
+              <a href="${{ env.PYTHON_PACKAGE_NAME }}-${{ env.PACKAGE_VERSION }}-py3-none-any.whl">
+                ${{ env.PYTHON_PACKAGE_NAME }}-${{ env.PACKAGE_VERSION }}-py3-none-any.whl
               </a>
-              <a href="jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}.tar.gz">jupyterlab_datalogger-${{ env.JUPYTERLAB_DATALOGGER_VERSION }}.tar.gz</a>
+              <a href="${{ env.PYTHON_PACKAGE_NAME }}-${{ env.PACKAGE_VERSION }}.tar.gz">
+                ${{ env.PYTHON_PACKAGE_NAME }}-${{ env.PACKAGE_VERSION }}.tar.gz
+              </a>
             </body>
-          </html>' > _site/releases/jupyterlab-datalogger/index.html
+          </html>' > _site/releases/${{ env.PACKAGE_NAME }}/index.html
 
-      - name: Move package files into _site/releases/jupyterlab-datalogger
-        run: mv dist/* _site/releases/jupyterlab-datalogger
+      - name: Create _site/latest.tar.gz
+        run: cp dist/*.tar.gz _site/latest.tar.gz
+
+      - name: Move package files into _site/releases/<package-name>
+        run: mv dist/* _site/releases/${{ env.PACKAGE_NAME }}
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v2

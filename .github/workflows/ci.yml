@@ -41,31 +41,8 @@ jobs:
           restore-keys: |
             yarn-${{ runner.os }}-
 
-      - name: Enable corepack
-        run: corepack enable
-
       - name: Install Node dependencies
-        run: yarn
+        run: hatch run ci:jlpm
 
       - name: Lint frontend
-        run: yarn lint
-
-      - name: Check Formatting (Black)
-        run: hatch run black datalogger_jupyterlab --check
-
-      - name: Lint (Flake8)
-        run: hatch run flake8 datalogger_jupyterlab
-
-      - name: Lint (Pylint)
-        run: hatch run pylint datalogger_jupyterlab
-
-      - name: Mypy cache
-        uses: actions/cache@v3
-        with:
-          path: .mypy_cache
-          key: mypy-${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-${{ github.sha }}
-          restore-keys: |
-            mypy-${{ runner.os }}-python-${{ env.PYTHON_VERSION }}-
-
-      - name: Type Check (Mypy)
-        run: hatch run mypy datalogger_jupyterlab
+        run: hatch run ci:jlpm lint
