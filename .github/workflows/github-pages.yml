@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on: workflow_dispatch
 
 env:
-  HATCH_VERSION: "1.7.0"
+  HATCH_VERSION: "1.9.1"
   PACKAGE_VERSION: "0.4.0"
   PACKAGE_NAME: "jupyterlab-datalogger"
   PYTHON_PACKAGE_NAME: "jupyterlab_datalogger"
