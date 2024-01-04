@@ -26,12 +26,12 @@ export const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
   description: "Shortcuts to generate code that loads logs with DataLogger.",
   autoStart: true,
   requires: [ILauncher, IFileBrowserFactory, INotebookTracker],
-  activate: (
+  activate(
     { commands }: JupyterFrontEnd,
     launcher: ILauncher,
     { tracker: fileBrowserTracker }: IFileBrowserFactory,
     notebookTracker: INotebookTracker,
-  ) => {
+  ) {
     commands.addCommand(`${PACKAGE_NAME}:add-datalogger-load-code-command`, {
       label: "Add DataLogger Load Code",
       icon: addIcon,

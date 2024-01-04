@@ -12,7 +12,7 @@ export const netcdfFileTypePlugin: JupyterFrontEndPlugin<void> = {
   id: `${PACKAGE_NAME}:netcdf-file-type-plugin`,
   description: "Adds NetCDF file type.",
   autoStart: true,
-  activate: ({ docRegistry }: JupyterFrontEnd) => {
+  activate({ docRegistry }: JupyterFrontEnd) {
     if (docRegistry.getFileType("netcdf") === undefined) {
       docRegistry.addFileType({
         name: "netcdf",
