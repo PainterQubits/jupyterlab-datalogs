@@ -7,6 +7,10 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Fixed
+
+- The "RTC:" prefix is now removed from paths when using Jupyter Real-Time Collaboration.
+
 ## [0.4.0] (Nov 10 2023)
 
 ### Added

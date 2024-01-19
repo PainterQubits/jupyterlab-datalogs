@@ -3,7 +3,8 @@ import { NotebookPanel } from "@jupyterlab/notebook";
 import { FileInfo } from "@/types";
 import { JSON_MIMETYPE, NETCDF_MIMETYPE } from "@/constants";
 
-const varSuffix = "_log";
+const RTC_PREFIX = "RTC:";
+const VAR_SUFFIX = "_log";
 
 export function generateLoadCode(fileInfo: FileInfo, notebookPanel: NotebookPanel) {
   const { name, path: filePath, mimetype } = fileInfo;
@@ -14,10 +15,10 @@ export function generateLoadCode(fileInfo: FileInfo, notebookPanel: NotebookPane
   // Find a unique variable name (one not already present in the code)
   const existingCode = notebookPanel.model?.toString();
   const varBase = name.split(".")[0].replaceAll("-", "_");
-  let varName = `${varBase}${varSuffix}`;
+  let varName = `${varBase}${VAR_SUFFIX}`;
   let varIndex = 1;
   while (existingCode?.includes(varName)) {
-    varName = `${varBase}${varSuffix}_${varIndex}`;
+    varName = `${varBase}${VAR_SUFFIX}_${varIndex}`;
     varIndex += 1;
   }
 
@@ -41,8 +42,11 @@ for data_var_name in ${varName}.data:
     previewCode = "";
   }
 
-  // Get the relative log path
-  const relativeFilePath = path.relative(path.dirname(notebookPath), filePath);
+  // Get the relative log path, removing the RTC prefix if present
+  let relativeFilePath = path.relative(path.dirname(notebookPath), filePath);
+  if (relativeFilePath.startsWith(RTC_PREFIX)) {
+    relativeFilePath = relativeFilePath.slice(RTC_PREFIX.length);
+  }
 
   // Return load code
   return `${varName} = ${loadFunction}("${relativeFilePath}")${previewCode}`;
