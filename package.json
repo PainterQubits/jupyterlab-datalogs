@@ -37,6 +37,7 @@
     "jupyterlab": "hatch run jupyter lab",
     "copy-icons": "mkdir -p lib/icons && cp src/icons/*.svg* lib/icons"
   },
+  "packageManager": "yarn@3.5.0",
   "dependencies": {
     "@jupyterlab/application": "^4.0.10",
     "@jupyterlab/filebrowser": "^4.0.10",
