@@ -7,6 +7,8 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.4.1] (Jan 19 2024)
+
 ### Fixed
 
 - The "RTC:" prefix is now removed from paths when using Jupyter Real-Time Collaboration.
@@ -53,7 +55,8 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - JupyterLab plugin to add NetCDF mimetype and file icon.
 - JupyterLab plugin that adds shortcuts to generate code that loads logs with DataLogger.
 
-[unreleased]: https://github.com/PainterQubits/jupyterlab-datalogger/compare/v0.4.0...main
+[unreleased]: https://github.com/PainterQubits/jupyterlab-datalogger/compare/v0.4.1...main
+[0.4.1]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.4.1
 [0.4.0]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.4.0
 [0.3.1]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.3.1
 [0.3.0]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.3.0
