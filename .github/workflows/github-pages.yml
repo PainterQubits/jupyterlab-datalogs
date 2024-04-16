@@ -5,8 +5,8 @@ on: workflow_dispatch
 env:
   HATCH_VERSION: "1.9.1"
   PACKAGE_VERSION: "0.4.1"
-  PACKAGE_NAME: "jupyterlab-datalogger"
-  PYTHON_PACKAGE_NAME: "jupyterlab_datalogger"
+  PACKAGE_NAME: "jupyterlab-datalogs"
+  PYTHON_PACKAGE_NAME: "jupyterlab_datalogs"
 
 jobs:
   build:

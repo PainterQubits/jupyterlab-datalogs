@@ -1,8 +1,8 @@
 {
-  "name": "jupyterlab-datalogger",
+  "name": "jupyterlab-datalogs",
   "private": true,
   "version": "0.4.1",
-  "description": "JupyterLab extension for DataLogger.",
+  "description": "JupyterLab extension for DataLogs.",
   "contributors": [
     {
       "name": "Alex Hadley",
@@ -15,8 +15,8 @@
     "jupyterlab",
     "jupyterlab-extension"
   ],
-  "homepage": "https://github.com/PainterQubits/jupyterlab-datalogger",
-  "repository": "github:PainterQubits/jupyterlab-datalogger",
+  "homepage": "https://github.com/PainterQubits/jupyterlab-datalogs",
+  "repository": "github:PainterQubits/jupyterlab-datalogs",
   "main": "lib/index.js",
   "jupyterlab": {
     "extension": true,

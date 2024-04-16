@@ -3842,9 +3842,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jupyterlab-datalogger@workspace:.":
+"jupyterlab-datalogs@workspace:.":
   version: 0.0.0-use.local
-  resolution: "jupyterlab-datalogger@workspace:."
+  resolution: "jupyterlab-datalogs@workspace:."
   dependencies:
     "@jupyterlab/application": ^4.1.0
     "@jupyterlab/builder": ^4.1.0

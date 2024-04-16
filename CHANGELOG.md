@@ -7,6 +7,11 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+### Changed
+
+- Renamed package from `jupyterlab-datalogger` to `jupyterlab-datalogs` to be consistent
+  with the renamed DataLogs package.
+
 ## [0.4.1] (Jan 19 2024)
 
 ### Fixed
@@ -53,12 +58,12 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ### Added
 
 - JupyterLab plugin to add NetCDF mimetype and file icon.
-- JupyterLab plugin that adds shortcuts to generate code that loads logs with DataLogger.
+- JupyterLab plugin that adds shortcuts to generate code that loads logs with DataLogs.
 
-[unreleased]: https://github.com/PainterQubits/jupyterlab-datalogger/compare/v0.4.1...main
-[0.4.1]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.4.1
-[0.4.0]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.4.0
-[0.3.1]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.3.1
-[0.3.0]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.3.0
-[0.2.0]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.2.0
-[0.1.0]: https://github.com/PainterQubits/jupyterlab-datalogger/releases/tag/v0.1.0
+[unreleased]: https://github.com/PainterQubits/jupyterlab-datalogs/compare/v0.4.1...main
+[0.4.1]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.4.1
+[0.4.0]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.4.0
+[0.3.1]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.3.1
+[0.3.0]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.3.0
+[0.2.0]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.2.0
+[0.1.0]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.1.0

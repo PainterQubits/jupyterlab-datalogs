@@ -9,21 +9,21 @@ import { chartLineIcon, chartLineIconUrl } from "@/icons";
 
 const logMimetypes = new Set([JSON_MIMETYPE, NETCDF_MIMETYPE]);
 
-const dataloggerNotebookImports = [
+const datalogsNotebookImports = [
   "import numpy as np",
   "import xarray as xr",
   "import matplotlib.pyplot as plt",
-  "from datalogger import load_log, DictLog, DataLog",
+  "from datalogs import load_log, DictLog, DataLog",
 ];
 
 /**
- * Along with its corresponding schema (schema/datalogger-load-code.json), this plugin
+ * Along with its corresponding schema (schema/datalogs-load-code.json), this plugin
  * adds items to the file browser context menu, the main menu, and the Launcher to
- * add code to notebooks for loading log files using DataLogger.
+ * add code to notebooks for loading log files using DataLogs.
  */
-export const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
-  id: `${PACKAGE_NAME}:datalogger-load-code-plugin`,
-  description: "Shortcuts to generate code that loads logs with DataLogger.",
+export const datalogsLoadCodePlugin: JupyterFrontEndPlugin<void> = {
+  id: `${PACKAGE_NAME}:datalogs-load-code-plugin`,
+  description: "Shortcuts to generate code that loads logs with DataLogs.",
   autoStart: true,
   requires: [ILauncher, IFileBrowserFactory, INotebookTracker],
   activate(
@@ -32,8 +32,8 @@ export const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
     { tracker: fileBrowserTracker }: IFileBrowserFactory,
     notebookTracker: INotebookTracker,
   ) {
-    commands.addCommand(`${PACKAGE_NAME}:add-datalogger-load-code-command`, {
-      label: "Add DataLogger Load Code",
+    commands.addCommand(`${PACKAGE_NAME}:add-datalogs-load-code-command`, {
+      label: "Add DataLogs Load Code",
       icon: addIcon,
       execute: async () => {
         const { currentWidget: fileBrowser } = fileBrowserTracker;
@@ -63,7 +63,7 @@ export const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
       },
     });
 
-    async function newDataloggerNotebook() {
+    async function newDatalogsNotebook() {
       // Create a new notebook
       const notebookPanel: NotebookPanel = await commands.execute("notebook:create-new");
       await notebookPanel.context.ready;
@@ -74,7 +74,7 @@ export const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
         insertLocation: "currentCell",
         cellType: "markdown",
       });
-      await addToNotebook(notebook, dataloggerNotebookImports.join("\n"));
+      await addToNotebook(notebook, datalogsNotebookImports.join("\n"));
       await addToNotebook(notebook, "## Load Logs", { cellType: "markdown" });
       await addToNotebook(notebook);
       NotebookActions.renderAllMarkdown(notebook);
@@ -84,32 +84,32 @@ export const dataloggerLoadCodePlugin: JupyterFrontEndPlugin<void> = {
     }
 
     // Used in file browser context menu
-    commands.addCommand(`${PACKAGE_NAME}:new-datalogger-notebook-command`, {
-      label: "New DataLogger Notebook",
+    commands.addCommand(`${PACKAGE_NAME}:new-datalogs-notebook-command`, {
+      label: "New DataLogs Notebook",
       icon: chartLineIcon,
-      execute: newDataloggerNotebook,
+      execute: newDatalogsNotebook,
     });
 
     // Used in main menu File > New
-    commands.addCommand(`${PACKAGE_NAME}:datalogger-notebook-command`, {
-      label: "DataLogger Notebook",
+    commands.addCommand(`${PACKAGE_NAME}:datalogs-notebook-command`, {
+      label: "DataLogs Notebook",
       icon: chartLineIcon,
-      execute: newDataloggerNotebook,
+      execute: newDatalogsNotebook,
     });
 
     // Used in Launcher
-    commands.addCommand(`${PACKAGE_NAME}:datalogger-command`, {
-      label: "DataLogger",
+    commands.addCommand(`${PACKAGE_NAME}:datalogs-command`, {
+      label: "DataLogs",
       icon: chartLineIcon,
-      execute: newDataloggerNotebook,
+      execute: newDatalogsNotebook,
     });
 
     launcher.add({
       category: "Notebook",
-      command: `${PACKAGE_NAME}:datalogger-command`,
+      command: `${PACKAGE_NAME}:datalogs-command`,
       kernelIconUrl: chartLineIconUrl,
     });
   },
 };
 
-export default dataloggerLoadCodePlugin;
+export default datalogsLoadCodePlugin;

@@ -1,4 +1,4 @@
-export const PACKAGE_NAME = "jupyterlab-datalogger";
+export const PACKAGE_NAME = "jupyterlab-datalogs";
 
 // Mimetypes
 export const JSON_MIMETYPE = "application/json";

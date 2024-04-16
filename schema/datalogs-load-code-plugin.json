@@ -1,6 +1,6 @@
 {
-  "title": "DataLogger Load Code",
-  "description": "Shortcuts to generate code that loads logs with DataLogger.",
+  "title": "DataLogs Load Code",
+  "description": "Shortcuts to generate code that loads logs with DataLogs.",
   "jupyter.lab.menus": {
     "main": [
       {
@@ -12,7 +12,7 @@
               "id": "jp-mainmenu-file-new",
               "items": [
                 {
-                  "command": "jupyterlab-datalogger:datalogger-notebook-command",
+                  "command": "jupyterlab-datalogs:datalogs-notebook-command",
                   "rank": 20
                 }
               ]
@@ -23,12 +23,12 @@
     ],
     "context": [
       {
-        "command": "jupyterlab-datalogger:add-datalogger-load-code-command",
+        "command": "jupyterlab-datalogs:add-datalogs-load-code-command",
         "selector": ".jp-DirListing-item[data-isdir=\"false\"]",
         "rank": 3
       },
       {
-        "command": "jupyterlab-datalogger:new-datalogger-notebook-command",
+        "command": "jupyterlab-datalogs:new-datalogs-notebook-command",
         "selector": ".jp-DirListing-content",
         "rank": 53
       }

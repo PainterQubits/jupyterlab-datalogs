@@ -1,2 +1,2 @@
 export * from "./netcdfFileTypePlugin";
-export * from "./dataloggerLoadCodePlugin";
+export * from "./datalogsLoadCodePlugin";

@@ -1,25 +1,25 @@
-# DataLogger JupyterLab
+# DataLogs JupyterLab
 
-JupyterLab extension for DataLogger.
+JupyterLab extension for DataLogs.
 
 ## Installation
 
-Install the latest version of DataLogger JupyterLab using pip:
+Install the latest version of JupyterLab DataLogs using pip:
 
 ```
-pip install -U jupyterlab-datalogger --extra-index-url https://painterqubits.github.io/jupyterlab-datalogger/releases
+pip install -U jupyterlab-datalogs --extra-index-url https://painterqubits.github.io/jupyterlab-datalogs/releases
 ```
 
 This extension should run alongside
 [JupyterLab](https://jupyterlab.readthedocs.io/en/stable/getting_started/installation.html)
 version 4 (included with the `jupyterlab` extra). There are also a set of packages
-required for analysis using DataLogger notebooks (included with the `analysis` extra), and
+required for analysis using DataLogs notebooks (included with the `analysis` extra), and
 a set of recommended JupyterLab plugins (included with the `plugins` extra).
 
 To automatically install with all of these extras, use the `all` extra:
 
 ```
-pip install -U "jupyterlab-datalogger[all]" --extra-index-url https://painterqubits.github.io/jupyterlab-datalogger/releases
+pip install -U "jupyterlab-datalogs[all]" --extra-index-url https://painterqubits.github.io/jupyterlab-datalogs/releases
 ```
 
 While the Real-Time Collaboration extension is included in the `plugins` extra for
@@ -43,13 +43,13 @@ To develop, the following dependencies must be installed:
 Then, run
 
 ```bash
-yarn
+hatch run ci:jlpm
 ```
 
 to install Node.js dependencies, and
 
 ```bash
-yarn dev
+hatch run dev
 ```
 
 to build the extension and start up a JupyterLab server. The first time you do this, also
@@ -59,9 +59,10 @@ changes, it should automatically rebuild, and the updated extension will be used
 page is reloaded.
 
 > [!NOTE]  
-> On Windows, symbolic links must be activated for `yarn dev` to work. On Windows 10 or
-> above for Python version 3.8 or higher, this can be done by
+> On Windows, symbolic links must be activated for `hatch run dev` to work. On Windows 10
+> or above for Python version 3.8 or higher, this can be done by
 > [activating developer mode](https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development).
 >
-> Alternatively, you can run `yarn preview` to rebuild and reinstall the extension each
-> time the source code changes.
+> Alternatively, you can run `hatch run build` to rebuild and reinstall the extension each
+> time the source code changes, and `hatch run jupyter lab` to start a new JupyterLab
+> server.
