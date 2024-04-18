@@ -1,5 +1,5 @@
 [build-system]
-requires = ["hatchling", "hatch-nodejs-version", "jupyterlab>=4.0.10,<5"]
+requires = ["hatchling", "hatch-nodejs-version", "jupyterlab>=4.1.6,<5"]
 build-backend = "hatchling.build"
 
 [project]
@@ -25,12 +25,12 @@ dynamic = ["version", "description", "authors", "urls", "keywords"]
 
 [project.optional-dependencies]
 all = ["jupyterlab-datalogs[jupyterlab,analysis,plugins]"]
-jupyterlab = ["jupyterlab>=4.0.10,<5"]
+jupyterlab = ["jupyterlab>=4.1.6,<5"]
 analysis = [
   "datalogs @ https://painterqubits.github.io/datalogs/latest.tar.gz",
-  "numpy>=1.26.3,<2",
-  "xarray>=2023.12.0",
-  "matplotlib>=3.8.2,<4",
+  "numpy>=1.26.4,<2",
+  "xarray>=2024.3.0",
+  "matplotlib>=3.8.4,<4",
 ]
 plugins = [
   "jupyterlab-display-name @ https://painterqubits.github.io/jupyterlab-display-name/latest.tar.gz",
@@ -67,12 +67,12 @@ npm = ["jlpm"]
 [tool.hatch.envs.default]
 description = "For running JupyterLab in development"
 dependencies = [
-  "jupyterlab>=4.0.10,<5",
-  "jupyter-collaboration>=2.0.1,<3",
-  "datalogs>=0.3.0",
-  "numpy>=1.26.3,<2",
-  "xarray>=2023.12.0",
-  "matplotlib>=3.8.2,<4",
+  "jupyterlab>=4.1.6,<5",
+  "jupyter-collaboration>=2.0.11,<3",
+  "datalogs>=0.4.0",
+  "numpy>=1.26.4,<2",
+  "xarray>=2024.3.0",
+  "matplotlib>=3.8.4,<4",
 ]
 
 [tool.hatch.envs.default.env-vars]
@@ -87,4 +87,4 @@ lint = "jlpm lint"
 [tool.hatch.envs.ci]
 description = "For running jlpm in CI without building and installing this package"
 detached = true
-dependencies = ["jupyterlab>=4.0.10,<5"]
+dependencies = ["jupyterlab>=4.1.6,<5"]

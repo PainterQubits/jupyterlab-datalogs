@@ -1,4 +1,4 @@
-# DataLogs JupyterLab
+# JupyterLab DataLogs
 
 JupyterLab extension for DataLogs.
 
