@@ -28,7 +28,7 @@ all = ["jupyterlab-datalogs[jupyterlab,analysis,plugins]"]
 jupyterlab = ["jupyterlab>=4.1.6,<5"]
 analysis = [
   "datalogs @ https://painterqubits.github.io/datalogs/latest.tar.gz",
-  "numpy>=1.26.4,<2",
+  "numpy>=1.26.4,<3",
   "xarray>=2024.3.0",
   "matplotlib>=3.8.4,<4",
 ]
@@ -70,7 +70,7 @@ dependencies = [
   "jupyterlab>=4.1.6,<5",
   "jupyter-collaboration>=2.0.11,<3",
   "datalogs>=0.4.0",
-  "numpy>=1.26.4,<2",
+  "numpy>=1.26.4,<3",
   "xarray>=2024.3.0",
   "matplotlib>=3.8.4,<4",
 ]
