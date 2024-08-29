@@ -7,6 +7,10 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [0.6.0] (Apr 29 2024)
+
+- Public release of JupyterLab DataLogs.
+
 ## [0.5.0] (Apr 18 2024)
 
 ### Changed
@@ -62,7 +66,8 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - JupyterLab plugin to add NetCDF mimetype and file icon.
 - JupyterLab plugin that adds shortcuts to generate code that loads logs with DataLogs.
 
-[unreleased]: https://github.com/PainterQubits/jupyterlab-datalogs/compare/v0.5.0...main
+[unreleased]: https://github.com/PainterQubits/jupyterlab-datalogs/compare/v0.6.0...main
+[0.6.0]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.6.0
 [0.5.0]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.5.0
 [0.4.1]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.4.1
 [0.4.0]: https://github.com/PainterQubits/jupyterlab-datalogs/releases/tag/v0.4.0
