@@ -1,5 +1,10 @@
 # JupyterLab DataLogs
 
+[![PyPI Latest Release](https://img.shields.io/pypi/v/jupyterlab-datalogs)](https://pypi.org/project/jupyterlab-datalogs/)
+[![PyPI Python Versions](https://img.shields.io/pypi/pyversions/jupyterlab-datalogs)](https://pypi.org/project/jupyterlab-datalogs/)
+[![License](https://img.shields.io/pypi/l/jupyterlab-datalogs)](https://github.com/PainterQubits/jupyterlab-datalogs/blob/main/LICENSE)
+[![CI](https://github.com/PainterQubits/jupyterlab-datalogs/actions/workflows/ci.yml/badge.svg)](https://github.com/PainterQubits/jupyterlab-datalogs/actions/workflows/ci.yml)
+
 JupyterLab extension for DataLogs.
 
 ## Installation
@@ -7,7 +12,7 @@ JupyterLab extension for DataLogs.
 Install the latest version of JupyterLab DataLogs using pip:
 
 ```
-pip install -U jupyterlab-datalogs --extra-index-url https://painterqubits.github.io/jupyterlab-datalogs/releases
+pip install -U jupyterlab-datalogs
 ```
 
 This extension should run alongside
@@ -19,7 +24,7 @@ a set of recommended JupyterLab plugins (included with the `plugins` extra).
 To automatically install with all of these extras, use the `all` extra:
 
 ```
-pip install -U "jupyterlab-datalogs[all]" --extra-index-url https://painterqubits.github.io/jupyterlab-datalogs/releases
+pip install -U "jupyterlab-datalogs[all]"
 ```
 
 While the Real-Time Collaboration extension is included in the `plugins` extra for
